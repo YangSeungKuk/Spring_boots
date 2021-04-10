@@ -29,6 +29,8 @@ public class BoardController {
 	}
 	
 	@RequestMapping("/board/boardList")
+	//mvc model -> 데이터를 다루는 것, view -> html, controller -> 요청을 하면 url로 받아 return 
+	//model은 파이썬의 딕셔너리 같은 것 키 값 중요
 	public String boardList(Model model) {
 		// 서비스 로직
 		List<BoardDto> list = boardService.boardList();
@@ -39,5 +41,18 @@ public class BoardController {
 		
 		// 뷰어 이동
 		return "board/boardList";
+	}
+	
+	@RequestMapping("/board/boardWrite")
+	public String boardWrite() {
+		// 뷰어 이동
+		return "board/boardWrite";
+	}
+	
+	@RequestMapping("/board/boardInsert")
+	public String boardInsert(BoardDto board) {
+		boardService.boardInsert(board);
+		// 뷰어 이동
+		return "redirect:/board/boardList";
 	}
 }
