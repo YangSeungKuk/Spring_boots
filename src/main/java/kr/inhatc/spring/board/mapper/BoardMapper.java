@@ -16,6 +16,8 @@ public interface BoardMapper {
 
 	void boardInsert(BoardDto board);
 
+	BoardDto boardDetail(int boardIdx);
+
 	
 
 }

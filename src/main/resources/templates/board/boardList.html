@@ -26,7 +26,8 @@
 			<tbody>
 				<tr th:if="${#lists.size(list)} > 0" th:each="vo : ${list}">
 					<td th:text='${vo.boardIdx}'></td>
-					<td th:text='${vo.title}'></td>
+					<td class="title">
+						<a href="/board/boardDetail?boardIdx=" th:attrappend="href=${vo.boardIdx}" th:text='${vo.title}'></a>
 					<td th:text='${vo.hitCnt}'></td>
 					<td th:text='${vo.createDate}'></td>
 				</tr>

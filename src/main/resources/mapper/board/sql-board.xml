@@ -19,4 +19,12 @@
 		INSERT INTO t_board (board_idx, title, contents, create_date, create_id)
 		VALUES (#{boardIdx}, #{title}, #{contents}, sysdate, 'admin')
 	</insert>
+	
+	<!-- 상세페이지 sql -->
+	<!-- 마이바티스에서 받아오거나 줄때 #{}으로 ,  -->
+	<select id="boardDetail" parameterType="int" resultType="kr.inhatc.spring.board.dto.BoardDto">
+		SELECT board_idx, title, contents, hit_cnt, TO_CHAR(create_date, 'YYYY-MM-DD') AS create_date, create_id 
+		FROM  T_BOARD
+		WHERE delete_yn = 'N' AND board_idx = #{boardIdx}	
+	</select>
 </mapper>

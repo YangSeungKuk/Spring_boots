@@ -12,6 +12,8 @@ public interface BoardService {
 
 	void boardInsert(BoardDto board);
 
+	BoardDto boardDetail(int boardIdx);
+
 				
 
 }

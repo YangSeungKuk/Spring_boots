@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.inhatc.spring.board.dto.BoardDto;
 import kr.inhatc.spring.board.service.BoardService;
@@ -55,4 +56,15 @@ public class BoardController {
 		// 뷰어 이동
 		return "redirect:/board/boardList";
 	}
+	
+	//정보를 들고가기 위해 model사용
+	@RequestMapping("/board/boardDetail")
+	public String boardDetail(@RequestParam int boardIdx, Model model) {
+		BoardDto board = boardService.boardDetail(boardIdx);
+		
+		model.addAttribute("board", board);
+		// 뷰어 이동
+		return "board/boardDetail";
+	}
+	
 }
