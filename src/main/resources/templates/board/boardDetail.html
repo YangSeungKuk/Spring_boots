@@ -44,10 +44,43 @@
 					</tr>
 				</tbody>
 			</table>
-			<input type="button" id="list" value="목록으로" class="btn"/>
-			<input type="button" id="edit" value="수정하기" class="btn"/>
-			<input type="button" id="delete" value="삭제하기" class="btn"/>						
+			<input type="hidden" name = "boardIdx" th:value="${board.boardIdx}">					
 		</form>
+		<input type="button" id="list" value="목록으로" class="btn"/>
+		<input type="button" id="edit" value="수정하기" class="btn"/>
+		<input type="button" id="delete" value="삭제하기" class="btn"/>	
 	</div>
+	
+	<script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous">
+	</script>
+	
+	<!-- 자바스크립트를 사용하기위해 불러오기, 항상 최신 버전으로 -->
+	<!-- <script src="http://code.jquery.com/jquery-latest.min.js"></script>  -->
+	<!-- 자바스크립트를 사용햐기 위해 -->
+	<script type="text/javascript">
+		//jquery문법
+		$(document).ready(function(){
+			//아이디는 #, 클래스는.
+			$("#list").on("click", function(){
+				location.href = "/board/boardList"
+			});
+			
+			$("#edit").on("click", function(){
+				//frm의 0번째 가져오기
+				var frm = $("#frm")[0];
+				// 위의 주소로정보 전송
+				frm.action = "/board/boardUpdate"
+				frm.submit()
+			});
+			
+			$("#delete").on("click", function(){
+				//frm의 0번째 가져오기
+				var frm = $("#frm")[0];
+				// 위의 주소로정보 전송
+				frm.action = "/board/boardDelete"
+				frm.submit()
+			});
+		});
+	</script>
 </body>
 </html>
