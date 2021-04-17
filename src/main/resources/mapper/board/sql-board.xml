@@ -2,6 +2,7 @@
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace에 설정된 곳에서 id설정 -->    
 <mapper namespace="kr.inhatc.spring.board.mapper.BoardMapper">
 	<select id="boardList" resultType="kr.inhatc.spring.board.dto.BoardDto">
 		SELECT board_idx, title, hit_cnt, TO_CHAR(create_date, 'YYYY-MM-DD') AS create_date 
@@ -9,9 +10,10 @@
 		WHERE delete_yn = 'N'
 		ORDER BY board_idx DESC
 	</select>
+	<!-- oreder by ~ desc 내림차순으로 정렬 -->
 	
 	<insert id="boardInsert" parameterType="kr.inhatc.spring.board.dto.BoardDto">
-		<!-- 시퀀스 값 가져오기 -->
+		<!-- 시퀀스 값 가져오기, order로 동작하기 전에 진행 -->
 		<selectKey keyProperty="boardIdx" resultType="int" order="BEFORE">
 			SELECT board_seq.nextval FROM DUAL
 		</selectKey>
@@ -21,7 +23,7 @@
 	</insert>
 	
 	<!-- 상세페이지 sql -->
-	<!-- 마이바티스에서 받아오거나 줄때 #{}으로 ,  -->
+	<!-- 마이바티스에서 받아오거나 줄때 #{}으로 , BoardDto에서 정의한 명으로 쓰기 -->
 	<select id="boardDetail" parameterType="int" resultType="kr.inhatc.spring.board.dto.BoardDto">
 		SELECT board_idx, title, contents, hit_cnt, TO_CHAR(create_date, 'YYYY-MM-DD') AS create_date, create_id 
 		FROM  T_BOARD

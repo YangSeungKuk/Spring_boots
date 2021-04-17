@@ -2,6 +2,8 @@ package kr.inhatc.spring.board.controller;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+
 import kr.inhatc.spring.board.dto.BoardDto;
 import kr.inhatc.spring.board.service.BoardService;
 
@@ -22,7 +25,10 @@ import kr.inhatc.spring.board.service.BoardService;
 @Controller
 //@RestController
 public class BoardController {
-
+	
+	//로거 만들기 slf4j에 있는 로거 사용
+	private Logger log = LoggerFactory.getLogger(this.getClass());
+	
 	@Autowired
 	private BoardService boardService;
 	
@@ -41,6 +47,7 @@ public class BoardController {
 	public String boardList(Model model) {
 		// 서비스 로직
 		List<BoardDto> list = boardService.boardList();
+		log.debug(">>>>>>>>>>>>>>>>>" + list.size());
 		//System.out.println(">>>>>>>>>>>>>>>>>" + list.size());
 		//System.out.println(list.get(0));
 		model.addAttribute("list", list);
@@ -59,12 +66,13 @@ public class BoardController {
 	@RequestMapping("/board/boardInsert")
 	public String boardInsert(BoardDto board) {
 		boardService.boardInsert(board);
-		// 뷰어 이동
+		// 뷰어 이동, redirect은 컨트롤에 있는 주소를 찾아감
 		return "redirect:/board/boardList";
 	}
 	
 	//정보를 들고가기 위해 model사용
 	@RequestMapping("/board/boardDetail")
+	//@RequestParam은 url을 처리할 때 사용
 	public String boardDetail(@RequestParam int boardIdx, Model model) {
 		BoardDto board = boardService.boardDetail(boardIdx);
 		

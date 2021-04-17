@@ -26,6 +26,7 @@
 			<tbody>
 				<tr th:if="${#lists.size(list)} > 0" th:each="vo : ${list}">
 					<td th:text='${vo.boardIdx}'></td>
+					<!-- 제목을 누르면 detail로 이동하게 -->
 					<td class="title">
 						<a href="/board/boardDetail?boardIdx=" th:attrappend="href=${vo.boardIdx}" th:text='${vo.title}'></a>
 					<td th:text='${vo.hitCnt}'></td>
