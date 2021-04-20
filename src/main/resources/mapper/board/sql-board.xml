@@ -49,5 +49,41 @@
 		DELETE FROM t_board
 		WHERE board_idx = #{boardIdx}
 	</delete>
+
+	<!-- 한번 하나씩 여러번 가져옴 -->
+	<insert id="boardFileInsert" parameterType="kr.inhatc.spring.board.dto.FileDto">
+		INSERT INTO t_file(
+			IDX,
+			BOARD_IDX, 
+			ORIGINAL_FILE_NAME, 
+			STORED_FILE_PATH, 
+			FILE_SIZE, 
+			CREATOR_ID, 
+			CREATE_DATETIME	
+		)
+		<!-- 여기서 A는 아래있는 A -->
+		SELECT file_seq.nextval, A.* FROM(
+			<!-- 시퀀스를 여러개 쓸때는 foreach를 사용 -->
+			<foreach item = "item" collection="list" separator = "UNION ALL">
+				SELECT #{item.boardIdx} as board_idx,
+					#{item.originalFileName} as original_file_name,
+					#{item.storedFilePath} as stored_file_path,
+					#{item.fileSize} as file_size,
+					'admin',
+					sysdate
+				FROM DUAL
+			</foreach>) A
+	</insert>
+		
+	<select id = "selectBoardFileList" parameterType = "int" resultType="kr.inhatc.spring.board.dto.FileDto" >
+		SELECT idx, board_idx, original_file_name, ROUND(file_size/1024) as file_size
+		FROM t_file
+		WHERE board_idx = #{boardIdx} AND deleted_yn = 'N'
+	</select>	
 	
+	<select id = "selectFileInfo" parameterType="map" resultType="kr.inhatc.spring.board.dto.FileDto">
+		SELECT original_file_name, STORED_FILE_PATH, file_size
+		FROM t_file
+		WHERE idx = #{idx} AND board_idx=#{boardIdx} AND deleted_yn = 'N'
+	</select>
 </mapper>

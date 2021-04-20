@@ -1,12 +1,20 @@
 package kr.inhatc.spring.board.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,9 +22,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import kr.inhatc.spring.board.dto.BoardDto;
+import kr.inhatc.spring.board.dto.FileDto;
 import kr.inhatc.spring.board.service.BoardService;
 
 //메모리에 올리기 위해
@@ -64,8 +73,8 @@ public class BoardController {
 	}
 	
 	@RequestMapping("/board/boardInsert")
-	public String boardInsert(BoardDto board) {
-		boardService.boardInsert(board);
+	public String boardInsert(BoardDto board, MultipartHttpServletRequest multipartHttpServletRequest) {
+		boardService.boardInsert(board, multipartHttpServletRequest);
 		// 뷰어 이동, redirect은 컨트롤에 있는 주소를 찾아감
 		return "redirect:/board/boardList";
 	}
@@ -99,4 +108,30 @@ public class BoardController {
 		// 뷰어 이동
 		return "redirect:/board/boardList";
 	}
+	
+	@RequestMapping("/board/downloadBoardFile")
+	public void downloadBoardFile(
+			@RequestParam("idx") int idx,
+			@RequestParam("boardIdx") int boardIdx,
+			HttpServletResponse response) throws Exception {
+		
+		FileDto boardFile = boardService.selectFileInfo(idx, boardIdx);
+		
+		if(ObjectUtils.isEmpty(boardFile) == false) {
+			String fileName = boardFile.getOriginalFileName();
+			byte[] files = FileUtils.readFileToByteArray(new File(boardFile.getStoredFilePath()));
+			
+			// response 헤더에 설정
+			response.setContentType("application/octet-stream");
+			response.setContentLength(files.length);
+			response.setHeader("Content-Disposition",
+					"attachment; filename = \"" + URLEncoder.encode(fileName, "UTF-8") + "\";");
+			response.setHeader("Content-Transfer-Encoding", "binary");
+			
+			response.getOutputStream().write(files);
+			response.getOutputStream().flush();
+			response.getOutputStream().close();
+		}
+	}
+	
 }

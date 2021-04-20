@@ -1,6 +1,7 @@
 package kr.inhatc.spring.board.dto;
 
 import java.util.Date;
+import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,5 +21,8 @@ public class BoardDto {
 		private String createId;
 		private String createDate;
 		//private Date createDate;
+		
+		//파일 관리를 위한 리스트 추가
+		private List<FileDto> fileList;
 		
 }
