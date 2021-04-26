@@ -32,21 +32,23 @@ public class FileUtils {
 		String path = "images/" + current.format(format);
 		
 		File file = new File(path);
-		if(file.exists() == false) {
+		if(file.exists() == false) { //폴더없으면 만들고 있으면 path
 			file.mkdir();
 		}
 		
 		Iterator<String> iter = multipartHttpServletRequest.getFileNames();
 		
+		// 원래 확장자
 		String originalFileExtension = null;
 		
+		//원소가 있을때 까지 부르나.
 		while(iter.hasNext()) {
 			//리스트 뽑기
 			List<MultipartFile> list = multipartHttpServletRequest.getFiles(iter.next());
 			
 			for (MultipartFile multipartFile : list) {
 				if(multipartFile.isEmpty() == false) {
-					
+					//타입을 가져옴
 					String contentType = multipartFile.getContentType();
 					if(ObjectUtils.isEmpty(contentType)) {
 						break;
@@ -61,10 +63,11 @@ public class FileUtils {
 							break;
 						}
 					}
-					//중복된 이름을 갖기 위해서
+					//중복된 이름을 없애 위해서, 새 파일 이름
 					String newFileName = Long.toString(System.nanoTime()) + originalFileExtension;
 					
-					FileDto boardFile = new FileDto();
+					FileDto boardFile = new FileDto(); //파일을 저장하기 위해
+					 //db에 저장할 정보들
 					boardFile.setBoardIdx(boardIdx);
 					boardFile.setFileSize(multipartFile.getSize());
 					boardFile.setOriginalFileName(multipartFile.getOriginalFilename());
@@ -73,6 +76,7 @@ public class FileUtils {
 					
 					file = new File(path + "/" + newFileName);
 					try {
+						//파일을 실제로 만드는 부분
 						multipartFile.transferTo(file);
 					} catch (IllegalStateException e) {
 						e.printStackTrace();

@@ -87,7 +87,7 @@
 			<version>2.6</version>
 		</dependency>
 
-		<!-- fileupload -->
+		<!-- fileupload, 옛날방법 하지만 많이 쓴다. -->
 		<dependency>
 			<groupId>commons-fileupload</groupId>
 			<artifactId>commons-fileupload</artifactId>

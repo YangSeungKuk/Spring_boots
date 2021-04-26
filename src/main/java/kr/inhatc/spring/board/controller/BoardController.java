@@ -44,11 +44,11 @@ public class BoardController {
 	
 	//요구가 들어올때 맵핑, localhost의 포트번호로 들어오면
 	//기본적으로 html파일을 찾아감
-	@RequestMapping("/")
-	//Hello 출력하는 매서드
-	public String hello() {
-		return "index";
-	}
+//	@RequestMapping("/")
+//	//Hello 출력하는 매서드
+//	public String hello() {
+//		return "index";
+//	}
 	
 	@RequestMapping("/board/boardList")
 	//mvc model -> 데이터를 다루는 것, view -> html, controller -> 요청을 하면 url로 받아 return 

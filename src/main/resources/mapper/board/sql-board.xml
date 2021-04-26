@@ -50,7 +50,7 @@
 		WHERE board_idx = #{boardIdx}
 	</delete>
 
-	<!-- 한번 하나씩 여러번 가져옴 -->
+	<!-- 한번 하나씩 여러번 가져옴 , file 추가-->
 	<insert id="boardFileInsert" parameterType="kr.inhatc.spring.board.dto.FileDto">
 		INSERT INTO t_file(
 			IDX,
@@ -81,6 +81,8 @@
 		WHERE board_idx = #{boardIdx} AND deleted_yn = 'N'
 	</select>	
 	
+	<!-- 딕셔너리?(hash, map)자료형, db에선 레코드, 희소행렬: 행렬의 값 대부분이 0인 경우 -->
+	<!-- 트리구조 링크드리스트 -->
 	<select id = "selectFileInfo" parameterType="map" resultType="kr.inhatc.spring.board.dto.FileDto">
 		SELECT original_file_name, STORED_FILE_PATH, file_size
 		FROM t_file
