@@ -10,7 +10,8 @@
 		<h2>사용자 목록</h2>
 		<table class = "board_list">
 			<colgroup>
-				<col width="20%"/>
+				<col width="10%"/>
+				<col width="10%"/>
 				<col width="20%"/>
 				<col width="20%"/>
 				<col width="20%"/>
@@ -22,16 +23,20 @@
 					<th scope="col">패스워드</th>	
 					<th scope="col">이름</th>
 					<th scope="col">이메일</th>
+					<th scope="col">권한</th>	
 					<th scope="col">가입일</th>														
 				</tr>
 			</thead>
 			<tbody>
 				<tr th:if="${#lists.size(list)} > 0" th:each="vo : ${list}">
-					<td th:text='${vo.id}'></td>
+					<td>
+						<a href="/user/userDetail/" th:attrappend="href=${vo.id}" th:text='${vo.id}'></a>
+					</td>
 					<!-- 제목을 누르면 detail로 이동하게 -->
 					<td th:text='${vo.pw}'></td>	
 					<td th:text='${vo.name}'></td>
 					<td th:text='${vo.email}'></td>
+					<td th:text='${vo.role}'></td>
 					<td th:text='${vo.joinDate}'></td>
 				</tr>
 				<tr th:unless="${#lists.size(list)} > 0">

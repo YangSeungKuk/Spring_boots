@@ -16,14 +16,18 @@ import lombok.NoArgsConstructor;
 @Entity
 //테이블 이름 설정
 @Table(name = "users")
+//디폴트 생성자
 @NoArgsConstructor
+//get, set
 @Data 
 public class Users {
 
-	@Id
-	@Column(name = "USER_ID")
+	@Id //기본키
+	@Column(name = "USER_ID") // 컬럼명 변경, @Column의 속성 변경
 	private String id;
 	private String pw;
+	
+	//@Column(length = 20)
 	private String name;
 	private String email;
 	
