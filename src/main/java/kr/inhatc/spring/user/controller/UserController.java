@@ -39,7 +39,7 @@ public class UserController {
 	//Hello 출력하는 매서드
 	public String hello() {
 		
-		return "redirect:/user/userList";
+		return "index";
 	}
 	
 	//GET(read), POST(create), PUT(update), DELETE(delete)
@@ -57,6 +57,8 @@ public class UserController {
 		return "user/userList";  
 	}
 	
+	//insert 
+	//@GetMapping 쓰면 method=RequestMethod.GET부분 생략가능
 	@RequestMapping(value = "/user/userInsert", method=RequestMethod.GET)
 	public String userWrite() {
 		
@@ -64,6 +66,7 @@ public class UserController {
 	}
 	
 	//만들러갈땐 POST
+	//@PostMapping 쓰면 method=RequestMethod.POST부분 생략가능
 	@RequestMapping(value = "/user/userInsert", method=RequestMethod.POST)
 	public String userInsert(Users user) {
 		userService.saveUsers(user);
