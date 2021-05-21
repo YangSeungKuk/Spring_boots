@@ -35,13 +35,13 @@ public class UserController {
 	
 	//요구가 들어올때 맵핑, localhost의 포트번호로 들어오면
 	//기본적으로 html파일을 찾아감
-	@RequestMapping("/")
-	//Hello 출력하는 매서드
-	public String hello() {
-		
-		return "index";
-	}
-	
+//	@RequestMapping("/")
+//	//Hello 출력하는 매서드
+//	public String hello() {
+//		
+//		return "index";
+//	}
+//	
 	//GET(read), POST(create), PUT(update), DELETE(delete)
 	//@GetMapping value값만 적으면 쓸수 있게
 	//@GetMapping("/userList")
