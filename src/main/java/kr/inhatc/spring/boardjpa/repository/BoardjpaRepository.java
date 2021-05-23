@@ -14,7 +14,7 @@ import kr.inhatc.spring.user.entity.Users;
 public interface BoardjpaRepository extends JpaRepository<Boards, Integer>{
 
 	List<Boards> findAllByOrderByIdxDesc();
-
+	
 //	@Modifying
 //    @Query("update Board p set p.view = p.view + 1 where p.id = :id")
 //    int updateView(Long id);

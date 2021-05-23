@@ -9,7 +9,7 @@
 	<div class="container">
 		<h2>게시판 상세</h2>
 
-		<form id="frm" name="frm" method="post" th:action="'/boardjpa/boardjpaUpdate/' + ${boardjpa.idx}">
+		<form id="frm" name="frm" method="post" enctype="multipart/form-data" th:action="'/boardjpa/boardjpaUpdate/' + ${boardjpa.idx} + '/'+ ${boardjpa.hitCnt}">
 			<table class="board_detail">
 				<tr>
 					<td>글 번호</td>
@@ -18,6 +18,10 @@
 				<tr>
 					<td>제목</td>
 					<td><input type="text" id="title" name="title" th:value="${boardjpa.title}"/></td>
+				</tr>
+				<tr>
+					<td>조회수</td>
+					<td><input type="text" id="hitCnt" name="hitCnt" th:value="${boardjpa.hitCnt}" disabled='disabled'/></td>
 				</tr>
 				<tr>
 					<td>id</td>

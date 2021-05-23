@@ -14,4 +14,8 @@ public interface BoardjpaService {
 
 	void boardjpaDelete(Integer idx);
 
+	void saveBoardjpa2(Boards board);
+
+	void savecntup(Boards board);
+
 }

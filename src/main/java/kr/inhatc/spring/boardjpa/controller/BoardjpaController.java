@@ -1,5 +1,6 @@
 package kr.inhatc.spring.boardjpa.controller;
 
+import java.io.Console;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -73,13 +74,16 @@ public class BoardjpaController {
 		return "boardjpa/boardjpaDetail";
 	}
 	
-	@RequestMapping(value = "/boardjpa/boardjpaUpdate/{idx}", method=RequestMethod.POST)
-	public String boardjpaUpdate(@PathVariable("idx")Integer idx, Boards board) {
+	@RequestMapping(value = "/boardjpa/boardjpaUpdate/{idx}/{hitCnt}", method=RequestMethod.POST)
+	public String boardjpaUpdate(@PathVariable("idx")Integer idx,@PathVariable("hitCnt")Integer hitCnt ,Boards board) {
 		System.out.println("========================>>" + board);
 		
 		board.setIdx(idx);
 		
-		boardjpaService.saveBoardjpa(board);
+		boardjpaService.saveBoardjpa2(board);
+		
+		board.setHitCnt(hitCnt+1);
+		boardjpaService.savecntup(board);
 		// 뷰어 이동
 		return "redirect:/boardjpa/boardjpaList";
 	}

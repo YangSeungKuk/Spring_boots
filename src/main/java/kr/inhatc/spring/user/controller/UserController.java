@@ -32,6 +32,7 @@ public class UserController {
 //	private UserService userService; Autowired안쓸려면 class위에 @RequiredArgsConstructor를 쓰고 final 넣어주기
 	private UserService userService;
 	
+
 	
 	//요구가 들어올때 맵핑, localhost의 포트번호로 들어오면
 	//기본적으로 html파일을 찾아감

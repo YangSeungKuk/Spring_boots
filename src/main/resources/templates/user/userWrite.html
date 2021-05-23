@@ -9,7 +9,7 @@
 	<div class="container">
 		<h2>사용자 등록</h2>
 		
-		<form id="frm" name="frm" method="post" action="/user/userInsert">
+		<form id="frm" name="frm" method="post" action="/user/userInsert" enctype="multipart/form-data">
 			<table class="board_detail">
 				<tr>
 					<td>아이디</td>
@@ -32,6 +32,7 @@
 					<td><input type="text" id="role" name="role" /></td>
 				</tr>
 			</table>
+			<input type="file" name="files" multiple="multiple"/>
 			<input type="submit" id="submit" value="저장" class="btn"/>
 		</form>
 	</div>

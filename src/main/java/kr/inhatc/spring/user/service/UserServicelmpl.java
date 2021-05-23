@@ -16,6 +16,7 @@ public class UserServicelmpl implements UserService{
 	@Autowired
 	UserRepository userRespository;
 	
+	
 	@Override
 	public List<Users> userList() {
 

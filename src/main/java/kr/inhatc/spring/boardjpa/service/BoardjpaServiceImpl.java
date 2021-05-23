@@ -27,6 +27,20 @@ public class BoardjpaServiceImpl implements BoardjpaService{
 		boardjpaRepository.save(board);
 		
 	}
+	
+	@Override
+	public void saveBoardjpa2(Boards board) {
+		
+		boardjpaRepository.save(board);
+		
+	}
+	
+	@Override
+	public void savecntup(Boards board) {
+		
+		boardjpaRepository.save(board);
+		
+	}
 
 	@Override
 	public Boards boardjpaDetail(Integer idx) {
