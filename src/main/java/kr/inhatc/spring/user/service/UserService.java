@@ -2,6 +2,8 @@ package kr.inhatc.spring.user.service;
 
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+
 import kr.inhatc.spring.user.entity.Users;
 
 public interface UserService {
@@ -13,5 +15,7 @@ public interface UserService {
 	Users userDetail(String id);
 
 	void userDelete(String id);
+
+	void saveUsers1(Users user, MultipartHttpServletRequest multipartHttpServletRequest);
 
 }

@@ -1,7 +1,12 @@
 package kr.inhatc.spring.user.controller;
 
+import java.io.File;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +16,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import kr.inhatc.spring.board.dto.BoardDto;
 import kr.inhatc.spring.board.service.BoardService;
@@ -69,8 +77,10 @@ public class UserController {
 	//만들러갈땐 POST
 	//@PostMapping 쓰면 method=RequestMethod.POST부분 생략가능
 	@RequestMapping(value = "/user/userInsert", method=RequestMethod.POST)
-	public String userInsert(Users user) {
-		userService.saveUsers(user);
+	public String userInsert(Users user, MultipartHttpServletRequest multipartHttpServletRequest){
+		userService.saveUsers1(user, multipartHttpServletRequest);
+
+					
 		return "redirect:/user/userList";  
 	}
 	
