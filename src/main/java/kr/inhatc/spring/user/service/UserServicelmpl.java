@@ -57,6 +57,7 @@ public class UserServicelmpl implements UserService{
 	@Override
 	public Users userDetail(String id) {
 		java.util.Optional<Users> optional = userRespository.findById(id);
+		System.out.println("asdfasdf~~~~~~ : "+ optional );
 		if(optional.isPresent()) {
 			Users user = optional.get();
 			return user;
@@ -68,7 +69,6 @@ public class UserServicelmpl implements UserService{
 	@Override
 	public void userDelete(String id) {
 		userRespository.deleteById(id);
-		
 	}
 
 	@Override

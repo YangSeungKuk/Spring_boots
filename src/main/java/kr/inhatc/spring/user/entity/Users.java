@@ -1,6 +1,7 @@
 package kr.inhatc.spring.user.entity;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -37,4 +38,7 @@ public class Users {
 	private Date joinDate;
 	private String enabled;
 	private String role;
+	
+	//파일 관리를 위한 리스트 추가
+
 }

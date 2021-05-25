@@ -36,7 +36,8 @@ public class FileUtiles {
 		//파일이 업로드 될 폴더 생성
 		DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyyMMdd");
 		ZonedDateTime current = ZonedDateTime.now();
-		String path = "images/" + current.format(format);
+		String path = "src/main/resources/static/images/" + current.format(format);
+		String dbpath = "/images/" + current.format(format);
 		
 		File file = new File(path);
 		if(file.exists() == false) { //폴더없으면 만들고 있으면 path
@@ -78,7 +79,7 @@ public class FileUtiles {
 					userFile.setUserid(id);
 					userFile.setFileSize(multipartFile.getSize());
 					userFile.setOriginalFileName(multipartFile.getOriginalFilename());
-					userFile.setStoredFilePath(path + "/" + newFileName);
+					userFile.setStoredFilePath(dbpath + "/" + newFileName);
 					fileRepository.save(userFile);
 					
 					file = new File(path + "/" + newFileName);

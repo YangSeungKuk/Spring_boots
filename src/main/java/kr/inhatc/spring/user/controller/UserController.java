@@ -22,7 +22,9 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import kr.inhatc.spring.board.dto.BoardDto;
 import kr.inhatc.spring.board.service.BoardService;
+import kr.inhatc.spring.user.entity.FileDto;
 import kr.inhatc.spring.user.entity.Users;
+import kr.inhatc.spring.user.service.FileService;
 import kr.inhatc.spring.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -40,6 +42,8 @@ public class UserController {
 //	private UserService userService; Autowired안쓸려면 class위에 @RequiredArgsConstructor를 쓰고 final 넣어주기
 	private UserService userService;
 	
+	@Autowired
+	private FileService fileService;
 
 	
 	//요구가 들어올때 맵핑, localhost의 포트번호로 들어오면
@@ -60,8 +64,12 @@ public class UserController {
 		log.info("================> 리스트 수행중 .......");
 		
 		List<Users> list = userService.userList();
-		System.out.println("===================> 크기" + list.size());
+		System.out.println("===================> 크기" + list);
 		model.addAttribute("list", list);
+		
+		//현재 리스트 에러나는 거 여기 2개 주석처리
+		FileDto filedot = fileService.fileList(list);
+//		model.addAttribute("file", filedot);
 		
 		return "user/userList";  
 	}
@@ -88,8 +96,15 @@ public class UserController {
 	@RequestMapping(value = "/user/userDetail/{id}", method=RequestMethod.GET)
 	public String userDetail(@PathVariable("id") String id, Model model) {
 		Users user = userService.userDetail(id);
+		FileDto filedot = fileService.fileDetail(id);
+//		System.out.println("file info : " + filedot);
 		model.addAttribute("user", user);
-		System.out.println("==================>" + user);
+		model.addAttribute("file", filedot);
+//		System.out.println("==================>" + user);
+		
+		//파일 정보
+		
+				
 		return "user/userDetail";  
 	}
 	
@@ -106,8 +121,9 @@ public class UserController {
 	
 	@RequestMapping(value = "/user/userDelete/{id}", method=RequestMethod.GET)
 	public String userDelete(@PathVariable("id") String id) {
-		
+		FileDto file = fileService.fileDetail(id);
 		userService.userDelete(id);
+		fileService.fileDelete(file);
 		
 		return "redirect:/user/userList";  
 	}
