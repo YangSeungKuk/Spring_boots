@@ -68,8 +68,8 @@ public class UserController {
 		model.addAttribute("list", list);
 		
 		//현재 리스트 에러나는 거 여기 2개 주석처리
-		FileDto filedot = fileService.fileList(list);
-//		model.addAttribute("file", filedot);
+		List<FileDto> files = fileService.fileList();
+		model.addAttribute("file", files);
 		
 		return "user/userList";  
 	}

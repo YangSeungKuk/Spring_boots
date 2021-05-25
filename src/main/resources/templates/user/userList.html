@@ -25,19 +25,23 @@
 					<th>이메일</th>
 					<th>권한</th>
 					<th>가입일</th>
+					<th>썸네일</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:if="${#lists.size(list)} > 0" th:each="vo : ${list}">
-					<td><a href="/user/userDetail/" th:attrappend="href=${vo.id}"
-						th:text='${vo.id}'></a> <!-- <a th:href = "@{/user/userDetail/{id}(${vo.id})}" th:text='${vo.id}'></a> -->
-						<!--  <a th:href = "@{/user/userDetail/(id=${vo.id})}"></a> --></td>
+				<tr th:if="${#lists.size(list)} > 0" th:each="vo, i : ${list}">
+					<td>
+						<a href="/user/userDetail/" th:attrappend="href=${vo.id}" th:text='${vo.id}'></a>
+						<!-- <a th:href = "@{/user/userDetail/{id}(${vo.id})}" th:text='${vo.id}'></a> -->
+						<!--  <a th:href = "@{/user/userDetail/(id=${vo.id})}"></a> -->
+					</td>
 					<!-- 제목을 누르면 detail로 이동하게 -->
 					<td th:text='${vo.pw}'></td>
 					<td th:text='${vo.name}'></td>
 					<td th:text='${vo.email}'></td>
 					<td th:text='${vo.role}'></td>
 					<td th:text='${vo.joinDate}'></td>
+					<td><img th:src="${file[i.index].storedFilePath}" height="50px"/></td>
 				</tr>
 				<tr th:unless="${#lists.size(list)} > 0">
 					<td colspan="5">조회된 결과가 없습니다.</td>

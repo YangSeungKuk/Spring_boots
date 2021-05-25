@@ -50,20 +50,20 @@ public class FileServicelmpl implements FileService{
 		
 	}
 
-	@Override
-	public FileDto fileList(List<Users> list) {
-		ArrayList pitches = new ArrayList();
-		
-//		System.out.println("ehal~~~ : " + list.get(0));
-		for(int i = 0; i<list.size(); i++) {
-			pitches.add(list.get(i).getId());
-		}
-		System.out.println("asdf : " + pitches);
-		
-//		FileDto file = 
-		
-		return null;
-	}
+//	@Override
+//	public FileDto fileList(List<Users> list) {
+//		ArrayList pitches = new ArrayList();
+//		
+////		System.out.println("ehal~~~ : " + list.get(0));
+//		for(int i = 0; i<list.size(); i++) {
+//			pitches.add(list.get(i).getId());
+//		}
+//		System.out.println("asdf : " + pitches);
+//		
+////		FileDto file = 
+//		
+//		return null;
+//	}
 
 //	@Override
 //	@Transactional
@@ -78,6 +78,14 @@ public class FileServicelmpl implements FileService{
 		fileRepository.deleteByUserid(file.getUserid());
 		File delFile = new File("src/main/resources/static" + file.getStoredFilePath());
 		delFile.delete();
+	}
+
+	@Override
+	public List<FileDto> fileList() {
+		List<FileDto> list =  fileRepository.findAllByOrderByUseridDesc();
+		System.out.println("lst~~~~!!! : " + list);
+		
+		return list;
 	}
 
 	

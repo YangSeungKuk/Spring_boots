@@ -21,6 +21,8 @@ public interface FileRepository extends JpaRepository<FileDto, String>{
 
 	void deleteByUserid(String id);
 
+	List<FileDto> findAllByOrderByUseridDesc();
+
 //	FileDto deleteByIdx(int idx);
 
 //	List<Users> findAllByOrderByIdDesc();

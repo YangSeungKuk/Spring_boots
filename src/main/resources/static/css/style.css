@@ -41,8 +41,9 @@ caption {display:none; width:0; height:0; margin-top:-1px; overflow:hidden; visi
 .file_list a {display:inherit !important;}
 
 
-.footer{
-	position : absolute;
+.footer{ 
+	
+	position : fixed;
 	left : 0;
 	bottom : 0;
 	width : 100%;

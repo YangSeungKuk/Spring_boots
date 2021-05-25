@@ -11,11 +11,13 @@ public interface FileService {
 
 	FileDto fileDetail(String id);
 
-	FileDto fileList(List<Users> list);
+//	FileDto fileList(List<Users> list);
 
 //	void fileDelete(String id);
 
 	void fileDelete(FileDto file);
+
+	List<FileDto> fileList();
 
 
 }
