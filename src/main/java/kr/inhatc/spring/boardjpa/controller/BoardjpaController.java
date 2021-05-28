@@ -35,7 +35,7 @@ public class BoardjpaController {
 	//Hello 출력하는 매서드
 	public String hello() {
 		System.out.println("========================> 여기");
-		return "redirect:/boardjpa/boardjpaList";
+		return "index";
 	}
 	
 	

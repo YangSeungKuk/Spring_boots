@@ -17,6 +17,7 @@
 					<li class="nav-item"><a class="nav-link active"
 						aria-current="page" href="/">Home</a></li>
 					<li class="nav-item"><a class="nav-link" href="/user/userList">사용자</a></li>
+					<li class="nav-item"><a class="nav-link" href="/boardjpa/boardjpaList">보드jpa</a></li>
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 						role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -35,6 +36,9 @@
 					<input class="form-control me-2" type="search" placeholder="Search"
 						aria-label="Search">
 					<button class="btn btn-outline-success" type="submit">Search</button>
+					<button class="btn btn-outline-primary" type="button"><a th:href="@{/login/login}" class="text-white">login</a></button>
+					<!-- &nbsp; -->
+					<button class="btn btn-outline-danger" type="button"><a th:href="@{/login/logout}" class="text-white">logout</a></button>
 				</form>
 			</div>
 		</div>

@@ -39,6 +39,6 @@ public class Users {
 	private String enabled;
 	private String role;
 	
-	//파일 관리를 위한 리스트 추가
 
+	
 }

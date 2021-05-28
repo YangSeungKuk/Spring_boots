@@ -58,7 +58,7 @@ public class UserController {
 	//GET(read), POST(create), PUT(update), DELETE(delete)
 	//@GetMapping value값만 적으면 쓸수 있게
 	//@GetMapping("/userList")
-	@RequestMapping(value = "/user/userList", method=RequestMethod.GET)
+	@RequestMapping(value = "/user/userList",  method=RequestMethod.GET)
 	public String userList(Model model) {
 		
 		log.info("================> 리스트 수행중 .......");
