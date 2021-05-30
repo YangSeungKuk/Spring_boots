@@ -15,7 +15,7 @@
 
 	<div class="container">
 		<h2>사용자 목록</h2>
-
+		<!-- 총 사용자는 <th th:text="${list.total()}"></th> -->
 		<table class="table table-hover">
 			<thead>
 				<tr>
@@ -30,27 +30,48 @@
 			</thead>
 			<tbody>
 				<tr th:if="${#lists.size(list)} > 0" th:each="vo, i : ${list}">
-					<td>
-						<a href="/user/userDetail/" th:attrappend="href=${vo.id}" th:text='${vo.id}'></a>
-						<!-- <a th:href = "@{/user/userDetail/{id}(${vo.id})}" th:text='${vo.id}'></a> -->
-						<!--  <a th:href = "@{/user/userDetail/(id=${vo.id})}"></a> -->
-					</td>
+					<td><a href="/user/userDetail/" th:attrappend="href=${vo.id}"
+						th:text='${vo.id}'></a> <!-- <a th:href = "@{/user/userDetail/{id}(${vo.id})}" th:text='${vo.id}'></a> -->
+						<!--  <a th:href = "@{/user/userDetail/(id=${vo.id})}"></a> --></td>
 					<!-- 제목을 누르면 detail로 이동하게 -->
 					<td th:text='${vo.pw}'></td>
 					<td th:text='${vo.name}'></td>
 					<td th:text='${vo.email}'></td>
 					<td th:text='${vo.role}'></td>
 					<td th:text='${vo.joinDate}'></td>
-					<td><img th:src="${file[i.index].storedFilePath}" height="50px"/></td>
+					<td><img th:src="${file[i.index].storedFilePath}"
+						height="50px" /></td>
 				</tr>
 				<tr th:unless="${#lists.size(list)} > 0">
 					<td colspan="5">조회된 결과가 없습니다.</td>
 				</tr>
 			</tbody>
 		</table>
-		
+		<nav aria-label="Page navigation example">
+			<ul class="pagination justify-content-center">
+				<li class="page-item"
+					th:classappend="${1 == list.pageable.pageNumber + 1} ? 'disabled'">
+					<a class="page-link" href="#"
+					th:href="@{/user/userList(page=${list.pageable.pageNumber - 1},searchText=${param.searchText})}"
+					tabindex="-1" aria-disabled="true">Previous</a>
+				</li>
+				<li class="page-item"
+					th:classappend="${i == list.pageable.pageNumber + 1} ? 'disabled'"
+					th:each="i : ${#numbers.sequence(startpage, endpage)}"><a
+					class="page-link" href="#"
+					th:href="@{/user/userList(page=${i - 1}, searchText = ${param.searchText})}"
+					th:text="${i}">1</a></li>
+				<li class="page-item"
+					th:classappend="${list.totalPages == list.pageable.pageNumber + 1} ? 'disabled'">
+					<a class="page-link" href="#"
+					th:href="@{/user/userList(page=${list.pageable.pageNumber + 1}, searchText=${param.searchText})}">Next</a>
+				</li>
+			</ul>
+		</nav>
 		<!-- 나는 버튼에 href를 넣음 교수님은 a태그로 '사용자 추가'에 넣음  -->
-		<button type="button" class="btn btn-outline-primary"><a href="/user/userInsert">사용자 추가</a></button>
+		<button type="button" class="btn btn-outline-primary">
+			<a href="/user/userInsert">사용자 추가</a>
+		</button>
 
 	</div>
 

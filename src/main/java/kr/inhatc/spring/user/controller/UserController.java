@@ -10,12 +10,16 @@ import org.apache.commons.lang3.RandomStringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -24,6 +28,7 @@ import kr.inhatc.spring.board.dto.BoardDto;
 import kr.inhatc.spring.board.service.BoardService;
 import kr.inhatc.spring.user.entity.FileDto;
 import kr.inhatc.spring.user.entity.Users;
+import kr.inhatc.spring.user.repository.UserRepository;
 import kr.inhatc.spring.user.service.FileService;
 import kr.inhatc.spring.user.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -45,6 +50,8 @@ public class UserController {
 	@Autowired
 	private FileService fileService;
 
+	@Autowired
+	private UserRepository userRepository;
 	
 	//요구가 들어올때 맵핑, localhost의 포트번호로 들어오면
 	//기본적으로 html파일을 찾아감
@@ -59,13 +66,27 @@ public class UserController {
 	//@GetMapping value값만 적으면 쓸수 있게
 	//@GetMapping("/userList")
 	@RequestMapping(value = "/user/userList",  method=RequestMethod.GET)
-	public String userList(Model model) {
+	public String userList(Model model,
+			//페이지 설정
+			@PageableDefault(size = 2)Pageable pageable,
+			//페이지 초기 설정
+			@RequestParam(required = false, defaultValue = "") String searchText) {
 		
 		log.info("================> 리스트 수행중 .......");
 		
-		List<Users> list = userService.userList();
+//		List<Users> list = userService.userList();
+//		Page<Users> list = userService.userPageList(searchText, searchText, pageable);
+		Page<Users> list = userService.userPageList(searchText, pageable);
+//		Page<Users> list = userRepository.findByIdContainingOrNameContaining(searchText, searchText, pageable);
 		System.out.println("===================> 크기" + list);
+		
+		int startpage = Math.max(1, list.getPageable().getPageNumber() - 4);
+		int endpage = Math.min(list.getTotalPages(), list.getPageable().getPageNumber() + 4);
+		
 		model.addAttribute("list", list);
+		model.addAttribute("startpage", startpage);
+		model.addAttribute("endpage", endpage);
+		
 		
 		//현재 리스트 에러나는 거 여기 2개 주석처리
 		List<FileDto> files = fileService.fileList();

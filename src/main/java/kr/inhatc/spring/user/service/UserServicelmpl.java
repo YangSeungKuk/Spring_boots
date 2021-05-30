@@ -4,6 +4,8 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.ObjectUtils;
@@ -85,11 +87,11 @@ public class UserServicelmpl implements UserService{
               String name = iter.next();
               System.out.println("-----------*******>" + name);
               List<MultipartFile> list = multipartHttpServletRequest.getFiles(name);
-              for(MultipartFile multipartFile : list) {
-                  System.out.println("==============> file name : "+ multipartFile.getOriginalFilename());
-                  System.out.println("==============> file size : "+ multipartFile.getSize());
-                  System.out.println("==============> file type : "+ multipartFile.getContentType());
-              }
+//              for(MultipartFile multipartFile : list) {
+//                  System.out.println("==============> file name : "+ multipartFile.getOriginalFilename());
+//                  System.out.println("==============> file size : "+ multipartFile.getSize());
+//                  System.out.println("==============> file type : "+ multipartFile.getContentType());
+//              }
           }
       }
       // 1.파일저장
@@ -101,6 +103,25 @@ public class UserServicelmpl implements UserService{
 //		
 //      }
 	}
+
+//	@Override
+//	public Page<Users> userPageList(String searchText, String searchText2, Pageable pageable) {
+//		Page<Users> list = userRespository.findByIdContainingOrNameContaining(searchText, searchText2, pageable);
+//		return list;
+//	}
+
+	@Override
+	public Page<Users> userPageList(String searchText, Pageable pageable) {
+		Page<Users> list = userRespository.findByIdContainingOrNameContaining(searchText, searchText, pageable);
+		return list;
+	}
+
+
+//	@Override
+//	public Page<Users> pageList() {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
 }
 
 

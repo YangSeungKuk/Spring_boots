@@ -11,11 +11,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	@Override
 	protected void configure(HttpSecurity security) throws Exception {
 		// 루트로 들어오사람은 아무나 들오게 할 수 있음
-		security.authorizeRequests().antMatchers("/", "/login/**", "/user/**").permitAll();
+		security.authorizeRequests().antMatchers("/", "/login/**", "/user/**", "/boardjpa/**").permitAll();
 		
 		// 인증된 사용자만 들어오게 할 수 있음
 //		security.authorizeRequests().antMatchers("/user/**").hasRole("ADMIN");
-		security.authorizeRequests().antMatchers("/boardjpa/**").hasAnyRole("MEMBER", "ADMIN");
+//		security.authorizeRequests().antMatchers("/boardjpa/**").hasAnyRole("MEMBER", "ADMIN");
 		
 		//상호참조? 변조를 방지하게 해주는 곳
 		//RESTfull 을 사용하기 위해 비활성화

@@ -15,5 +15,7 @@ public interface UserRepository extends JpaRepository<Users, String>{
 
 	List<Users> findAllByOrderByIdDesc();
 
+	Page<Users> findByIdContainingOrNameContaining(String title, String contents, Pageable pageable);
+
 
 }

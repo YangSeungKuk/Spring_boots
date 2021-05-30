@@ -33,8 +33,10 @@
 						tabindex="-1" aria-disabled="true">Disabled</a></li>
 				</ul>
 				<form class="d-flex">
-					<input class="form-control me-2" type="search" placeholder="Search"
-						aria-label="Search">
+					<input class="form-control me-2" type="search" placeholder="Search" id= "searchText"
+                 		   name= "searchText"
+                  		   aria-label="Search"
+                  		   th:value="${param.searchText}">
 					<button class="btn btn-outline-success" type="submit">Search</button>
 					<button class="btn btn-outline-primary" type="button"><a th:href="@{/login/login}" class="text-white">login</a></button>
 					<!-- &nbsp; -->
