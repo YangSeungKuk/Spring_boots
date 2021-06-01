@@ -29,7 +29,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:if="${#lists.size(list)} > 0" th:each="vo, i : ${list}">
+				<tr th:if="${#lists.size(list)} > 0" th:each="vo, i : ${list}" >
 					<td><a href="/user/userDetail/" th:attrappend="href=${vo.id}"
 						th:text='${vo.id}'></a> <!-- <a th:href = "@{/user/userDetail/{id}(${vo.id})}" th:text='${vo.id}'></a> -->
 						<!--  <a th:href = "@{/user/userDetail/(id=${vo.id})}"></a> --></td>
@@ -39,8 +39,9 @@
 					<td th:text='${vo.email}'></td>
 					<td th:text='${vo.role}'></td>
 					<td th:text='${vo.joinDate}'></td>
-					<td><img th:src="${file[i.index].storedFilePath}"
-						height="50px" /></td>
+					<td th:each= "dto, state : ${file}" th:if="${dto.userid == vo.id}">
+							<img th:src="${dto.storedFilePath}" height="50px" />
+					</td>
 				</tr>
 				<tr th:unless="${#lists.size(list)} > 0">
 					<td colspan="5">조회된 결과가 없습니다.</td>

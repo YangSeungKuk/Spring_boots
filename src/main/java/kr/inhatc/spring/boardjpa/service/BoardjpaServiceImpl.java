@@ -4,10 +4,13 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import kr.inhatc.spring.boardjpa.entity.Boards;
 import kr.inhatc.spring.boardjpa.repository.BoardjpaRepository;
+import kr.inhatc.spring.user.entity.Users;
 
 @Service
 public class BoardjpaServiceImpl implements BoardjpaService{
@@ -62,5 +65,15 @@ public class BoardjpaServiceImpl implements BoardjpaService{
 		boardjpaRepository.deleteById(idx);
 		
 	}
+
+	@Override
+	public Page<Boards> boardjpaPageList(String searchText, Pageable pageable) {
+		Page<Boards> list = boardjpaRepository.findByTitleContainingOrContentsContaining(searchText, searchText, pageable);
+		System.out.println("real : " + list);
+		return list;
+//		return null;
+	}
+
+
 
 }

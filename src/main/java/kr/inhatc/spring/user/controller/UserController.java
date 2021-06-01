@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -46,6 +47,9 @@ public class UserController {
 	@Autowired
 //	private UserService userService; Autowired안쓸려면 class위에 @RequiredArgsConstructor를 쓰고 final 넣어주기
 	private UserService userService;
+	
+	@Autowired
+	private PasswordEncoder encoder;
 	
 	@Autowired
 	private FileService fileService;
@@ -107,7 +111,14 @@ public class UserController {
 	//@PostMapping 쓰면 method=RequestMethod.POST부분 생략가능
 	@RequestMapping(value = "/user/userInsert", method=RequestMethod.POST)
 	public String userInsert(Users user, MultipartHttpServletRequest multipartHttpServletRequest){
-		userService.saveUsers1(user, multipartHttpServletRequest);
+		if(user != null) {
+			System.out.println("변경 전 : " + user.getPw());
+			String pw = encoder.encode(user.getPw());
+			System.out.println("변경 후 : " + pw);
+			user.setPw(pw);
+			userService.saveUsers1(user, multipartHttpServletRequest);
+		}
+		
 
 					
 		return "redirect:/user/userList";  

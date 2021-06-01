@@ -1,57 +1,61 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="UTF-8">
-<title>게시판 상세</title>
-<link rel="stylesheet" th:href="@{/css/style.css}"></link>
-</head>
-<body>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/default">
+
+<!-- index.html 고유 CSS 추가 -->
+<th:block layout:fragment="css">
+</th:block>
+
+<!-- index.html 고유 스크립트 추가 -->
+<th:block layout:fragment="script">
+</th:block>
+
+<div layout:fragment="content">
+
 	<div class="container">
 		<h2>사용자 상세</h2>
-
+		&nbsp;
 		<!-- id가 안넘어가서 아래방식으로 form문을 넘김 -->
 		<form role="form" th:method="POST"
-			th:action="'/user/userUpdate/' + ${user.id}" enctype="multipart/form-data">
-			<table class="board_detail">
+			th:action="'/user/userUpdate/' + ${user.id}"
+			enctype="multipart/form-data">
+			<table class="board_detail table caption-top">
 				<tr>
-					<td>아이디</td>
-					<td><input type="text" id="id" name="id" th:value="${user.id}"
-						disabled="disabled" /></td>
+					<th rowspan="3" style="width: 20%"><img
+						th:src="${file.storedFilePath}"
+						style="width: 250px; height: 200px" class="img-thumbnail"> <!-- <div style = "width: 100px; height: 200px;"> -->
+						<!-- </div> --></th>
+					<td style="width: 40%" align="center">아이디</td>
+					<td style="width: 40%"><input type="text" id="id" name="id"
+						th:value="${user.id}" disabled="disabled" /></td>
 				</tr>
 				<tr>
-					<td>패스워드</td>
-					<td><input type="text" id="pw" name="pw" th:value="${user.pw}" /></td>
+					<td align="center">패스워드</td>
+					<td><input type="text" id="pw" name="pw" th:value="${user.pw}" />
+					</td>
 				</tr>
 				<tr>
-					<td>이름</td>
+					<td align="center">이름</td>
 					<td><input type="text" id="name" name="name"
 						th:value="${user.name}" /></td>
 				</tr>
 				<tr>
-					<td>이메일</td>
-					<td><input type="text" id="email" name="email"
+					<td align="center">이메일</td>
+					<td colspan="2"><input type="text" id="email" name="email"
 						th:value="${user.email}" /></td>
-				</tr>
-				<tr>
-					<td>권한</td>
-					<td><input type="text" id="role" name="role"
-						th:value="${user.role}" /></td>
-				</tr>
-<!-- 				<tr>
-					<td>파일이름</td>
-					<td><input type="text" id="originalFileName"
-						name="originalFileName" th:value="${file.originalFileName}" /></td>
-				</tr>
-				<tr>
-					<td>경로</td>
-					<td><input type="text" id="storedFilePath"
-						name="storedFilePath" th:value="${file.storedFilePath}" /></td>
-				</tr> -->
-			</table>
-			<div>
-				<img th:src = "${file.storedFilePath}">
-			</div>
 
+				</tr>
+				<tr>
+					<td align="center">권한</td>
+					<td colspan="2">
+						<select th:field="${user.role}" class="form-control" id="role" name="role">
+							<option value="ROLE_ADMIN">관리자</option>
+							<option value="ROLE_MEMBER">사용자</option>
+						</select>
+					</td>
+				</tr>
+			</table>
 			<input type="submit" id="submit" value="수정" class="btn" />
 			<button>
 				<a href="/user/userDelete/" th:attrappend="href=${user.id} ">삭제</a>
@@ -61,5 +65,14 @@
 			</button>
 		</form>
 	</div>
-</body>
+
+</div>
 </html>
+
+
+
+
+
+
+
+

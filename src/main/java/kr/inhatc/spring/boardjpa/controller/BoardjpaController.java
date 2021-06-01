@@ -6,11 +6,15 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.inhatc.spring.board.dto.BoardDto;
 import kr.inhatc.spring.boardjpa.entity.Boards;
@@ -40,9 +44,23 @@ public class BoardjpaController {
 	
 	
 	@RequestMapping(value = "/boardjpa/boardjpaList", method=RequestMethod.GET)
-	public String boardjpaList(Model model) {
-		List<Boards> list = boardjpaService.boardjpaList();
+	public String boardjpaList(Model model,
+			//페이지 설정
+			@PageableDefault(size = 2)Pageable pageable,
+			//페이지 초기 설정
+			@RequestParam(required = false, defaultValue = "")String searchText) {
+		
+//		List<Boards> list = boardjpaService.boardjpaList();
+		Page<Boards> list = boardjpaService.boardjpaPageList(searchText, pageable);
+//		System.out.println("pagelist ~~~~> : "+ list1);
 		model.addAttribute("list", list);
+
+		int startpage = Math.max(1, list.getPageable().getPageNumber() - 4);
+		int endpage = Math.min(list.getTotalPages(), list.getPageable().getPageNumber() + 4);
+		
+		model.addAttribute("list", list);
+		model.addAttribute("startpage", startpage);
+		model.addAttribute("endpage", endpage);
 		
 		// 뷰어 이동
 		return "boardjpa/boardjpaList";
