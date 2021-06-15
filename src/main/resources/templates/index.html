@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorator="layout/default">
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/default">
 
 <!-- index.html 고유 CSS 추가 -->
 <th:block layout:fragment="css">
@@ -11,11 +11,149 @@
 <th:block layout:fragment="script">
 </th:block>
 
-<div layout:fragment="content">
+<div layout:fragment="content"
+	style="color: white; background-color: #212529;">
 
-    <div style="border: 1px solid red">
-        index.html 입니다.
-    </div>
+	<div class="container content">
 
+		<h3 class="cont_title" style="text-align: center;">
+			<img src="/images/main/mainbanner.png" alt="룸테마 ROOM THEME" />
+		</h3>
+
+		<p class="fs-1" style="text-align: center;">룸 테마</p>
+
+		<hr class="my-lg-3">
+
+		<div id="carouselExampleFade" class="carousel slide carousel-fade"
+			data-bs-ride="carousel">
+			<div class="carousel-inner">
+				<div class="carousel-item active" data-bs-interval="1000">
+					<img src="/images/main/1.jpg" class="d-block w-50"
+						style="border: 3px solid; display: block; margin-left: auto; margin-right: auto;"
+						alt="...">
+					<div class="carousel-caption" color="white">
+						<h5 style="color: white;">인형살인</h5>
+						<p style="color: white;">난이도 : 4/5 공포도 :4/5</p>
+					</div>
+				</div>
+				<div class="carousel-item" data-bs-interval="1000">
+					<img src="/images/main/2.jpg" class="d-block w-50"
+						style="border: 3px solid; display: block; margin-left: auto; margin-right: auto;"
+						alt="...">
+					<div class="carousel-caption">
+						<h5>인육식당</h5>
+						<p>난이도 : 3.5/5 공포도 : 3.5/5</p>
+					</div>
+				</div>
+				<div class="carousel-item" data-bs-interval="1000">
+					<img src="/images/main/3.jpg" class="d-block w-50"
+						style="border: 3px solid; display: block; margin-left: auto; margin-right: auto;"
+						alt="...">
+					<div class="carousel-caption">
+						<h5>저주인형</h5>
+						<p>난인도 : 3.5/5 공포도 : 3/5</p>
+					</div>
+				</div>
+				<div class="carousel-item" data-bs-interval="1000">
+					<img src="/images/main/4.jpg" class="d-block w-50"
+						style="border: 3px solid; display: block; margin-left: auto; margin-right: auto;"
+						alt="...">
+					<div class="carousel-caption">
+						<h5>잔혹인어</h5>
+						<p>난이도 : 3/5 공포도 : 2/5</p>
+					</div>
+				</div>
+				<div class="carousel-item" data-bs-interval="1000">
+					<img src="/images/main/5.jpg" class="d-block w-50"
+						style="border: 3px solid; display: block; margin-left: auto; margin-right: auto;"
+						alt="...">
+					<div class="carousel-caption">
+						<h5>사진괴담</h5>
+						<p>난이도 : 4/5 공포도 : 4/5</p>
+					</div>
+				</div>
+				<div class="carousel-item" data-bs-interval="1000">
+					<img src="/images/main/6.jpg" class="d-block w-50"
+						style="border: 3px solid; display: block; margin-left: auto; margin-right: auto;"
+						alt="...">
+					<div class="carousel-caption">
+						<h5>감옥탈출</h5>
+						<p>난이도 : 4/5 공포도 : 4/5</p>
+					</div>
+				</div>
+				<div class="carousel-item" data-bs-interval="1000">
+					<img src="/images/main/7.jpg" class="d-block w-50"
+						style="border: 3px solid; display: block; margin-left: auto; margin-right: auto;"
+						alt="...">
+					<div class="carousel-caption">
+						<h5>해골성당</h5>
+						<p>난이도 : 4/5 공포도 : 4/5</p>
+					</div>
+				</div>
+				<div class="carousel-item" data-bs-interval="1000">
+					<img src="/images/main/8.jpg" class="d-block w-50"
+						style="border: 3px solid; display: block; margin-left: auto; margin-right: auto;"
+						alt="...">
+					<div class="carousel-caption">
+						<h5>생체실험731</h5>
+						<p>난이도 : 4/5 공포도 : 4/5</p>
+					</div>
+				</div>
+			</div>
+			<button class="carousel-control-prev" type="button"
+				data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+				<span class="visually-hidden">Previous</span>
+			</button>
+			<button class="carousel-control-next" type="button"
+				data-bs-target="#carouselExampleFade" data-bs-slide="next">
+				<span class="carousel-control-next-icon" aria-hidden="true"></span>
+				<span class="visually-hidden">Next</span>
+			</button>
+		</div>
+
+		<hr class="my-lg-3">
+		&nbsp;
+
+		<div class="m2">
+			<div class="in_Layer">
+				<h3 class="cont_title">
+					<p class="fs-1" style="text-align: center;">-** 주의 사항 **-</p>
+				</h3>
+			</div>
+		</div>
+
+		<div class="ysk-wrap">
+			<div class="ysk-text">
+				<ul class="limi_list">
+					<li>
+						<dl>
+							<dt>사진촬영금지</dt>
+							<dd>구비된 인테리어, 소품, 해결과정은 비밀로 유지됩니다.</dd>
+						</dl></li>
+					<li>
+						<dl>
+							<dt>위험물품 반입금지</dt>
+							<dd>고객의 안전과 재미를 위하여, 위험한 물품은 반입을 금지합니다.</dd>
+						</dl></li>
+					<li>
+						<dl>
+							<dt>물품 파손주의</dt>
+							<dd>사용하신 장비들은 정밀한 기기들이며,다음 사용자를 위하여 파손에 주의해주세요</dd>
+						</dl></li>
+					<li>
+						<dl>
+							<dt>안전주의</dt>
+							<dd>게임관련 외의 행동에 주의하여 주시고,정해진 룰에 따라 주시기 바랍니다.</dd>
+						</dl></li>
+				</ul>
+			</div>
+			<div class="ysk-image">
+				<img src="/images/main/su.png" alt="이미지 없음">
+			</div>
+		</div>
+
+	</div>
+	<hr class="my-lg-3">
 </div>
 </html>

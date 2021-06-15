@@ -2,15 +2,12 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <!-- 클래스명을 두개줌 bg-dark랑 footer, footer없으면 css에서 하단으로 못 옮김 -->
-<footer class="bg-dark footer" th:fragment="footerFragment">
+<footer class="mt-auto py-3 bg-dark footer" th:fragment="footerFragment" style="background-color: #212529;" >
 
-    <!-- <div style="border: 1px solid gold">
-        Footer영역입니다.
-    </div> -->
-    <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
-    © 2021 Copyright:
-    <a class="text-reset fw-bold" href="https://mdbootstrap.com/">MDBootstrap.com</a>
-  </div>
+	<div class="text-center p-4"
+		style="background-color: #212529;">
+		양승국의 Spring 개발
+	</div>
 
 </footer>
 

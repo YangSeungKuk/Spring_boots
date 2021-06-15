@@ -1,6 +1,7 @@
 package kr.inhatc.spring.user.controller;
 
 import java.io.File;
+import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,15 +24,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import kr.inhatc.spring.board.dto.BoardDto;
-import kr.inhatc.spring.board.service.BoardService;
 import kr.inhatc.spring.user.entity.FileDto;
+import kr.inhatc.spring.user.entity.Resers;
 import kr.inhatc.spring.user.entity.Users;
+import kr.inhatc.spring.user.repository.ReserRepository;
 import kr.inhatc.spring.user.repository.UserRepository;
 import kr.inhatc.spring.user.service.FileService;
+import kr.inhatc.spring.user.service.ReserService;
 import kr.inhatc.spring.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -49,6 +53,9 @@ public class UserController {
 	private UserService userService;
 	
 	@Autowired
+	private ReserService reserService;
+	
+	@Autowired
 	private PasswordEncoder encoder;
 	
 	@Autowired
@@ -56,6 +63,9 @@ public class UserController {
 
 	@Autowired
 	private UserRepository userRepository;
+	
+	@Autowired
+	private ReserRepository reserRepository;
 	
 	//요구가 들어올때 맵핑, localhost의 포트번호로 들어오면
 	//기본적으로 html파일을 찾아감
@@ -82,10 +92,10 @@ public class UserController {
 //		Page<Users> list = userService.userPageList(searchText, searchText, pageable);
 		Page<Users> list = userService.userPageList(searchText, pageable);
 //		Page<Users> list = userRepository.findByIdContainingOrNameContaining(searchText, searchText, pageable);
-		System.out.println("===================> 크기" + list);
+		System.out.println("===================> 크기" + list.getTotalPages());
 		
-		int startpage = Math.max(1, list.getPageable().getPageNumber() - 4);
-		int endpage = Math.min(list.getTotalPages(), list.getPageable().getPageNumber() + 4);
+		int startpage = Math.min(1, list.getPageable().getPageNumber()+ 4);
+		int endpage = Math.max(list.getTotalPages() , list.getPageable().getPageNumber() - 4);
 		
 		model.addAttribute("list", list);
 		model.addAttribute("startpage", startpage);
@@ -158,6 +168,73 @@ public class UserController {
 		fileService.fileDelete(file);
 		
 		return "redirect:/user/userList";  
+	}
+	
+	
+	//////////////////////////////////////////////
+	//////프로젝트 페이지 생성
+	/////////////////////////////////////////////
+	
+	//위치 지도 페이지 
+	@RequestMapping(value = "/user/map", method=RequestMethod.GET)
+	public String userMap() {
+		
+		return "user/map";  
+	}
+	
+	@RequestMapping(value = "/user/roomthema", method=RequestMethod.GET)
+	
+	public String userRoomthema(Users user, Principal principal,  Model model) {
+		
+//		System.out.println("!@#~@ : " + user.getName(principal.getName(	)));
+		if(principal != null) {
+			System.out.println("kakakaka ==> "+ principal.getName());
+			System.out.println("!@#~@ : " + user);
+//		Users asd = (Users) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			model.addAttribute("principal", principal.getName());
+		}
+		
+//		List<Resers> list = reserService.reserList();
+		
+//		System.out.println("kakakaka ==> "+ asd);
+//		String username = principal.getUsername(); 
+//		String password = principal.getPassword();
+		return "user/roomthema";  
+	}
+	
+	@RequestMapping(value = "/user/reservation", method=RequestMethod.GET)
+	public String ReservationWrite() {
+		
+		
+		return "user/reservation";  
+	}
+	
+	@RequestMapping(value = "/user/reservation2", method=RequestMethod.GET)
+	public String ReservationWrite2(@RequestParam("thema") String thema, Model model) {
+
+		System.out.println("여기는 : " + thema);
+		model.addAttribute("themas", thema);
+		
+		return "user/reservation2";  
+	}
+	
+	@RequestMapping(value = "/user/reservation", method=RequestMethod.POST)
+	public String ReservationInsert(Resers reser, Principal principal) {
+		reser.setUserid(principal.getName());
+		System.out.println("변경 전1 : " + reser.getThema());
+		reserService.saveReser(reser);
+//		System.out.println("날짜는" + month);
+		return "user/reserConfirm";  
+	}
+	
+	@RequestMapping(value = "/user/reserConfirm", method=RequestMethod.GET)
+	public String ReservationConfirm(Resers reser, Principal principal, Model model) {
+		
+		Resers resers = reserService.reserInfo(principal.getName());
+		model.addAttribute("resers", resers);
+		
+		
+		return "user/reserConfirm";  
 	}
 	
 //	@GetMapping({"/test", "/test2"})

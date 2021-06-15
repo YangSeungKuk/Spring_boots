@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import kr.inhatc.spring.board.dto.BoardDto;
+
 import kr.inhatc.spring.boardjpa.entity.Boards;
 import kr.inhatc.spring.boardjpa.service.BoardjpaService;
 import kr.inhatc.spring.user.entity.Users;
@@ -46,7 +46,7 @@ public class BoardjpaController {
 	@RequestMapping(value = "/boardjpa/boardjpaList", method=RequestMethod.GET)
 	public String boardjpaList(Model model,
 			//페이지 설정
-			@PageableDefault(size = 2)Pageable pageable,
+			@PageableDefault(size = 5)Pageable pageable,
 			//페이지 초기 설정
 			@RequestParam(required = false, defaultValue = "")String searchText) {
 		

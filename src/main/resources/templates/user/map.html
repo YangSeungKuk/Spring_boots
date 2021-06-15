@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/default">
+
+<!-- index.html 고유 CSS 추가 -->
+<th:block layout:fragment="css">
+</th:block>
+
+<!-- index.html 고유 스크립트 추가 -->
+<th:block layout:fragment="script">
+</th:block>
+
+<div layout:fragment="content"
+	style="color: white; background-color: #212529;">
+
+	<div class="container">
+
+<!-- 		<div class="lb-wrap">
+			<div class="lb-text">
+				<h1>위치/주차</h1>
+				<p>모험의 시작! 당신의 두뇌를 테스트하세요!</p>
+			</div>
+			<div class="lb-image">
+				<img src="/images/main/asddsa.png" class="d-block w-100" alt="이미지 없음">
+			</div>
+		</div> -->
+
+		<hr class="my-lg-3">
+
+		<div class="f_map">
+			<div class="map_tab_title tabs_style"></div>
+			<!-- end : class : map_tab_title -->
+
+			<div class="map_tabs">
+
+				<div id="map_D1" class="map_D">
+					<h4 class="map_name">
+						<img src="../images/ico/map_ico.png" alt="" />- 홍대놀이터점
+					</h4>
+					<p class="map_p">
+						<span class="map_num">TEL 02-336-2425 /<span
+							class="span_br">&nbsp;</span> HP 010-9811-0297 / 연중무휴
+						</span> <span class="map_address">주소 : 서울특별시 마포구 와우산로 21길 20-5
+							홍대프라자 3층</span>
+					</p>
+					<div id="map1" class="map1" style="width: 100%; height: 310px;">
+						<iframe class="maps1"
+							src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2236.6412115223893!2d126.92179103623174!3d37.552982534602585!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x8f0bb367248e1b71!2z7JeR7Iqk7J207Iqk7LyA7J207ZSEIO2ZjeuMgOuGgOydtO2EsOygkA!5e0!3m2!1sko!2skr!4v1618881236009!5m2!1sko!2skr"
+							style="border: 0; width: 100%; height: 310px;" allowfullscreen=""
+							loading="lazy">
+						</iframe>
+					</div>
+				</div>
+				<!-- end : class : map_D -->
+
+				<hr class="my-lg-3">
+
+				<div id="map_D2" class="map_D">
+					<h4 class="map_name">
+						<img src="../images/ico/map_ico.png" alt="" />- 홍대 상상마당점
+					</h4>
+					<p class="map_p">
+						<span class="map_num">TEL 02-332-2427 /<span
+							class="span_br">&nbsp;</span> HP 010-6552-3465 / 연중무휴
+						</span> <span class="map_address">주소 : 서울특별시 마포구 어울마당로70 서포빌딩 4층</span>
+					</p>
+					<div id="map2" class="map2" style="width: 100%; height: 310px;">
+						<iframe class="maps2"
+							src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1329.9424444115068!2d126.92086771392884!3d37.55143454369778!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357c98dacbda350d%3A0xd50037165537bce2!2z7ISc7Jq47Yq567OE7IucIOuniO2PrOq1rCDshJzqtZDrj5kg7Ja07Jq466eI64u566GcIDcw!5e0!3m2!1sko!2skr!4v1618881383167!5m2!1sko!2skr"
+							style="width: 100%; height: 310px;" allowfullscreen=""
+							loading="lazy">
+						</iframe>
+					</div>
+				</div>
+				<!-- end : class : map_D -->
+			</div>
+			<!-- end : class : map_tabs -->
+		</div>
+
+	</div>
+
+</div>
+</html>

@@ -15,11 +15,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	protected void configure(HttpSecurity security) throws Exception {
 		// 루트로 들어오사람은 아무나 들오게 할 수 있음
 //		security.authorizeRequests().antMatchers("/", "/login/**", "/user/**", "/boardjpa/**").permitAll();
-		security.authorizeRequests().antMatchers("/", "/login/**").permitAll();
+		security.authorizeRequests().antMatchers("/", "/login/**", "/user/userInsert", "/user/map" , "/user/roomthema", "/boardjpa/**").permitAll();
 		
 		// 인증된 사용자만 들어오게 할 수 있음
-		security.authorizeRequests().antMatchers("/user/**").hasRole("ADMIN");
-		security.authorizeRequests().antMatchers("/boardjpa/**").hasAnyRole("MEMBER", "ADMIN");
+		security.authorizeRequests().antMatchers("/user/userList").hasRole("ADMIN");
+		security.authorizeRequests().antMatchers("/user/reservation", "/user/reserConfirm", "/user/reservation2").hasAnyRole("MEMBER", "ADMIN");
 		
 		//상호참조? 변조를 방지하게 해주는 곳
 		//RESTfull 을 사용하기 위해 비활성화
@@ -44,8 +44,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	 * </pre>
 	 * @return
 	 */
+	//Bean으로 아무대서나 쓸수 있게 됨
 	@Bean
 	public PasswordEncoder passwordEncoder() {
+		//                              createDelegatingPasswordEncoder() : 원패스 암호화
 		return PasswordEncoderFactories.createDelegatingPasswordEncoder();
 	}
 }

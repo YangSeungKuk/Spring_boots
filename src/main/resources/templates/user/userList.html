@@ -11,25 +11,41 @@
 <th:block layout:fragment="script">
 </th:block>
 
-<div layout:fragment="content">
+<div layout:fragment="content"
+	style="color: white; background-color: #212529;">
 
 	<div class="container">
+
+		<div class="ysk-wrap1">
+			<div class="ysk-text1">
+				<h3>테마 정보</h3>
+				<hr class="my-lg-3">
+				<p class="title_text">모험의 시작! 당신의 두뇌를 테스트하세요!</p>
+			</div>
+			<div class="ysk-image1">
+				<img src="/images/main/qwer.jpeg" width="1600" height="280"
+					alt="이미지 없음">
+			</div>
+
+		</div>
+
 		<h2>사용자 목록</h2>
 		<!-- 총 사용자는 <th th:text="${list.total()}"></th> -->
 		<table class="table table-hover">
 			<thead>
 				<tr>
-					<th>아이디</th>
-					<th>패스워드</th>
-					<th>이름</th>
-					<th>이메일</th>
-					<th>권한</th>
-					<th>가입일</th>
-					<th>썸네일</th>
+					<th style="color: white; background-color: #212529;">아이디</th>
+					<th style="color: white; background-color: #212529;">패스워드</th>
+					<th style="color: white; background-color: #212529;">이름</th>
+					<th style="color: white; background-color: #212529;">이메일</th>
+					<th style="color: white; background-color: #212529;">권한</th>
+					<th style="color: white; background-color: #212529;">가입일</th>
+					<th style="color: white; background-color: #212529;">썸네일</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:if="${#lists.size(list)} > 0" th:each="vo, i : ${list}" >
+				<tr th:if="${#lists.size(list)} > 0" th:each="vo, i : ${list}"
+					style="color: white; background-color: #212529;">
 					<td><a href="/user/userDetail/" th:attrappend="href=${vo.id}"
 						th:text='${vo.id}'></a> <!-- <a th:href = "@{/user/userDetail/{id}(${vo.id})}" th:text='${vo.id}'></a> -->
 						<!--  <a th:href = "@{/user/userDetail/(id=${vo.id})}"></a> --></td>
@@ -39,8 +55,8 @@
 					<td th:text='${vo.email}'></td>
 					<td th:text='${vo.role}'></td>
 					<td th:text='${vo.joinDate}'></td>
-					<td th:each= "dto, state : ${file}" th:if="${dto.userid == vo.id}">
-							<img th:src="${dto.storedFilePath}" height="50px" />
+					<td th:each="dto, state : ${file}" th:if="${dto.userid == vo.id}">
+						<img th:src="${dto.storedFilePath}" height="50px" />
 					</td>
 				</tr>
 				<tr th:unless="${#lists.size(list)} > 0">

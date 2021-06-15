@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/default"
+	xmlns:sec="http:www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<!-- index.html 고유 CSS 추가 -->
+<th:block layout:fragment="css">
+</th:block>
+
+<!-- index.html 고유 스크립트 추가 -->
+<th:block layout:fragment="script">
+</th:block>
+
+<div layout:fragment="content"
+	style="color: white; background-color: #212529;">
+
+	<!-- 	<h1 th:if="${principal != null}" th:text="${principal}"></h1>	-->
+	<div class="container">
+		<!-- box 시작 -->
+		<div class="ysk-wrap1">
+			<div class="ysk-text1">
+				<h3>테마 정보</h3>
+				<hr class="my-lg-3">
+				<p class="title_text">모험의 시작! 당신의 두뇌를 테스트하세요!</p>
+			</div>
+			<div class="ysk-image1">
+				<img src="/images/main/qwer.jpeg" width="1600" height="280"
+					alt="이미지 없음">
+			</div>
+
+		</div>
+
+
+		<div class="col-md-3 mb-2 box"
+			style="width: 100%; border: 2px solid white;">
+			<a href="/user/reservation2?thema=인형살인" class="text-white">
+
+				<div class="card" style="color: white; background-color: #212529;">
+
+					<div class="card-body">
+						<div class="list_top">
+							<div class="list_name"
+								style="width: 10; border: 2px solid white;">
+								<p class="fs-3">No. 01</p>
+								<p class="fs-4">
+									인형살인<span>(Doll Killing)</span>
+								</p>
+								<div class="room_level"
+									style="float: right; padding-right: 10px;">
+									<div class="set" style="padding: 8px 0 0 0;">
+										<span class="fs-6">난이도 : 4/5</span>
+									</div>
+									<div class="set" style="padding: 8px 0 0 0;">
+										<span class="fs-6">공포도 : 4/5</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="card-main" style="padding-bottom: 10px;">
+						<div class="c-main">
+							<div class="card-image" style="float: left;">
+								<image src="/images/main/1.jpg" border="0" width="300"
+									height="300" />
+							</div>
+							<div class="card-text"
+								style="width: 900px; height: 100px; margin-top: 100px; float: left;">인형에
+								미친 여자 ‘리사’가 살고 있었다. 그녀가 인형을 자식으로 대하는 행동은 ‘마녀’로 몰려, 결국 처형 당한다. 그
+								후, 마을 사람들은 살해되기 시작하고, 그녀의 집에는 불빛이 보이는데... 과연 어떤 비밀이?</div>
+						</div>
+					</div>
+
+
+				</div>
+			</a>
+		</div>
+
+		<!-- box 끝 -->
+
+		<div class="col-md-3 mb-2 box"
+			style="width: 100%; border: 2px solid white;">
+			<a href="/user/reservation2?thema=인육식당" class="text-white">
+
+				<div class="card" style="color: white; background-color: #212529;">
+
+					<div class="card-body">
+						<div class="list_top">
+							<div class="list_name"
+								style="width: 10; border: 2px solid white;">
+								<p class="fs-3">No. 02</p>
+								<p class="fs-4">
+									인육식당<span>(Human Flesh Restaurant)</span>
+								</p>
+								<div class="room_level"
+									style="float: right; padding-right: 10px;">
+									<div class="set" style="padding: 8px 0 0 0;">
+										<span class="fs-6">난이도 : 3.5/5</span>
+									</div>
+									<div class="set" style="padding: 8px 0 0 0;">
+										<span class="fs-6">공포도 : 3.5/5</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="card-main" style="padding-bottom: 10px;">
+						<div class="c-main">
+							<div class="card-image" style="float: left;">
+								<image src="/images/main/2.jpg" border="0" width="300"
+									height="300" />
+							</div>
+							<div class="card-text"
+								style="width: 900px; height: 100px; margin-top: 100px; float: left;">인희미한
+								형광등, 정신을 차리니 고기를 해체하는 선반도 있고, 분명 말로만 듣던 인육식당에 잡혀왔다. 개 우리 같은 곳에
+								갇혀있고, 널 부러진 해체 도구들… 빨리 도망쳐야 한다!</div>
+						</div>
+					</div>
+
+
+				</div>
+			</a>
+		</div>
+
+		<div class="col-md-3 mb-2 box"
+			style="width: 100%; border: 2px solid white;">
+			<a href="/user/reservation2?thema=저주인형" class="text-white">
+
+				<div class="card" style="color: white; background-color: #212529;">
+
+					<div class="card-body">
+						<div class="list_top">
+							<div class="list_name"
+								style="width: 10; border: 2px solid white;">
+								<p class="fs-3">No. 03</p>
+								<p class="fs-4">
+									저주인형<span>(Curse Doll)</span>
+								</p>
+								<div class="room_level"
+									style="float: right; padding-right: 10px;">
+									<div class="set" style="padding: 8px 0 0 0;">
+										<span class="fs-6">난이도 : 3.5/5</span>
+									</div>
+									<div class="set" style="padding: 8px 0 0 0;">
+										<span class="fs-6">공포도 : 3/5</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="card-main" style="padding-bottom: 10px;">
+						<div class="c-main">
+							<div class="card-image" style="float: left;">
+								<image src="/images/main/3.jpg" border="0" width="300"
+									height="300" />
+							</div>
+							<div class="card-text"
+								style="width: 900px; height: 100px; margin-top: 100px; float: left;">아이가
+								없었던 부부는 예쁜 아이인형을 만들었고 그 인형에게 자식 대신 엄청난 사랑을 쏟았다. 그러던 어느 날 부부에게
+								아이가 생기게 되어 부부는 인형을 돌보지 않게되었고, 어느 덧 집에는 아무도 살지 않게 되었다. 그리고 그 집에
+								들어간 사람은 아무도 나오지 못하게되는데...</div>
+						</div>
+					</div>
+
+
+				</div>
+			</a>
+		</div>
+
+
+		<div class="col-md-3 mb-2 box"
+			style="width: 100%; border: 2px solid white;">
+			<a href="/user/reservation2?thema=잔혹인어" class="text-white">
+
+				<div class="card" style="color: white; background-color: #212529;">
+
+					<div class="card-body">
+						<div class="list_top">
+							<div class="list_name"
+								style="width: 10; border: 2px solid white;">
+								<p class="fs-3">No. 04</p>
+								<p class="fs-4">
+									잔혹인어<span>(Mermaid princess)</span>
+								</p>
+								<div class="room_level"
+									style="float: right; padding-right: 10px;">
+									<div class="set" style="padding: 8px 0 0 0;">
+										<span class="fs-6">난이도 : 3/5</span>
+									</div>
+									<div class="set" style="padding: 8px 0 0 0;">
+										<span class="fs-6">공포도 : 2/5</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="card-main" style="padding-bottom: 10px;">
+						<div class="c-main">
+							<div class="card-image" style="float: left;">
+								<image src="/images/main/4.jpg" border="0" width="300"
+									height="300" />
+							</div>
+							<div class="card-text"
+								style="width: 900px; height: 100px; margin-top: 100px; float: left;">인간이
+								되고 싶은 인어공주! 인간이 되고 싶은 인어는 잔혹한 대가를 치르게되는데... 과연 인어공주와 왕자의 사랑은 이루어
+								질 수 있을까?</div>
+						</div>
+					</div>
+
+
+				</div>
+			</a>
+		</div>
+
+		<div class="col-md-3 mb-2 box"
+			style="width: 100%; border: 2px solid white;">
+			<a href="/user/reservation2?thema=사진괴담" class="text-white">
+
+				<div class="card" style="color: white; background-color: #212529;">
+
+					<div class="card-body">
+						<div class="list_top">
+							<div class="list_name"
+								style="width: 10; border: 2px solid white;">
+								<p class="fs-3">No. 05</p>
+								<p class="fs-4">
+									사진괴담<span>(Photo Ghost Story)</span>
+								</p>
+								<div class="room_level"
+									style="float: right; padding-right: 10px;">
+									<div class="set" style="padding: 8px 0 0 0;">
+										<span class="fs-6">난이도 : 4/5</span>
+									</div>
+									<div class="set" style="padding: 8px 0 0 0;">
+										<span class="fs-6">공포도 : 4/5</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="card-main" style="padding-bottom: 10px;">
+						<div class="c-main">
+							<div class="card-image" style="float: left;">
+								<image src="/images/main/5.jpg" border="0" width="300"
+									height="300" />
+							</div>
+							<div class="card-text"
+								style="width: 900px; height: 100px; margin-top: 100px; float: left;">난
+								사진동호회 회장 Eric 이다. 그런데 최근 동호회 후배가 자살했다. 그리고 또 한 명 또 한명.. 같은 장소.
+								폐쇄된 오피스텔 613호. 최근 찍은 사진에도 이상한 것이 나타나기 시작한다. 이상한 느낌이들어 그 곳으로 들어가게
+								되는데...</div>
+						</div>
+					</div>
+
+
+				</div>
+			</a>
+		</div>
+
+		<div class="col-md-3 mb-2 box"
+			style="width: 100%; border: 2px solid white;">
+			<a href="/user/reservation2?thema=감옥탈출" class="text-white">
+
+				<div class="card" style="color: white; background-color: #212529;">
+
+					<div class="card-body">
+						<div class="list_top">
+							<div class="list_name"
+								style="width: 10; border: 2px solid white;">
+								<p class="fs-3">No. 06</p>
+								<p class="fs-4">
+									감옥탈출<span>(Prison Escape)</span>
+								</p>
+								<div class="room_level"
+									style="float: right; padding-right: 10px;">
+									<div class="set" style="padding: 8px 0 0 0;">
+										<span class="fs-6">난이도 : 4/5</span>
+									</div>
+									<div class="set" style="padding: 8px 0 0 0;">
+										<span class="fs-6">공포도 : 4/5</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="card-main" style="padding-bottom: 10px;">
+						<div class="c-main">
+							<div class="card-image" style="float: left;">
+								<image src="/images/main/6.jpg" border="0" width="300"
+									height="300" />
+							</div>
+							<div class="card-text"
+								style="width: 900px; height: 100px; margin-top: 100px; float: left;">14일간
+								고립된 감옥에서 간수와 죄수로 역할에 충실 하는 것. ​ 실험 종료 시 심리상태가 어떻게 변했는지 기록하는 것.
+								실험 3일째 첫 살인이 시작되고, 역할에 몰입한 간수들은 점점 잔인해지고 죄수들도 미쳐간다. 이전의 실험이 중단된
+								이유를 알아내 이 미친 실험에서 탈출해야 한다!</div>
+						</div>
+					</div>
+
+
+				</div>
+			</a>
+		</div>
+
+
+		<div class="col-md-3 mb-2 box"
+			style="width: 100%; border: 2px solid white;">
+			<a href="/user/reservation2?thema=해골성당" class="text-white">
+
+				<div class="card" style="color: white; background-color: #212529;">
+
+					<div class="card-body">
+						<div class="list_top">
+							<div class="list_name"
+								style="width: 10; border: 2px solid white;">
+								<p class="fs-3">No. 07</p>
+								<p class="fs-4">
+									해골성당<span>(Skull Catholic Church)</span>
+								</p>
+								<div class="room_level"
+									style="float: right; padding-right: 10px;">
+									<div class="set" style="padding: 8px 0 0 0;">
+										<span class="fs-6">난이도 : 4/5</span>
+									</div>
+									<div class="set" style="padding: 8px 0 0 0;">
+										<span class="fs-6">공포도 : 4/5</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="card-main" style="padding-bottom: 10px;">
+						<div class="c-main">
+							<div class="card-image" style="float: left;">
+								<image src="/images/main/7.jpg" border="0" width="300"
+									height="300" />
+							</div>
+							<div class="card-text"
+								style="width: 900px; height: 100px; margin-top: 100px; float: left;">1870년
+								체코의 세들렉 납골당. 전쟁, 흑사병으로 죽은 사람의 뼈 824만개로 장식된 곳. 수 많은 원혼이 있는 이 곳에서
+								관광을 하던 중 갑자기 문이 닫히고 주변을 돌아보니 혼자 남게되는데...</div>
+						</div>
+					</div>
+
+
+				</div>
+			</a>
+		</div>
+
+		<div class="col-md-3 mb-2 box"
+			style="width: 100%; border: 2px solid white;">
+			<a href="/user/reservation2?thema=생체실험731" class="text-white">
+
+				<div class="card" style="color: white; background-color: #212529;">
+
+					<div class="card-body">
+						<div class="list_top">
+							<div class="list_name"
+								style="width: 10; border: 2px solid white;">
+								<p class="fs-3">No. 08</p>
+								<p class="fs-4">
+									생체실험731<span>(Living Body Experiment 731)</span>
+								</p>
+								<div class="room_level"
+									style="float: right; padding-right: 10px;">
+									<div class="set" style="padding: 8px 0 0 0;">
+										<span class="fs-6">난이도 : 4/5</span>
+									</div>
+									<div class="set" style="padding: 8px 0 0 0;">
+										<span class="fs-6">공포도 : 4/5</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="card-main" style="padding-bottom: 10px;">
+						<div class="c-main">
+							<div class="card-image" style="float: left;">
+								<image src="/images/main/8.jpg" border="0" width="300"
+									height="300" />
+							</div>
+							<div class="card-text"
+								style="width: 900px; height: 100px; margin-top: 100px; float: left;">시간여행자인
+								당신, 일본 731부대의 진실을 알고 싶어 1937년 만주로 이동했다. 도착지점을 잘못 설정해서 마루타 해부실에
+								도착하게 되는데 멀리서 들려오는 소리 도망치지 못하면 해부되거나, 소각 된다. 그 안에 다른곳으로 이동해야 한다.</div>
+						</div>
+					</div>
+
+
+				</div>
+			</a>
+		</div>
+	</div>
+</div>
+
+
+<!-- 	<sec:authorize access="hasRole('ROLE_ADMIN')">
+			<a th:href="@{/}" class="btn btn-outline-danger">테마추가</a>
+	</sec:authorize> -->
+
+<hr class="my-lg-3">
+</div>
+
+</html>

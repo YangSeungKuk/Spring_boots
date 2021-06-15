@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/default">
+
+<!-- index.html 고유 CSS 추가 -->
+<th:block layout:fragment="css">
+</th:block>
+
+<!-- index.html 고유 스크립트 추가 -->
+<th:block layout:fragment="script">
+</th:block>
+<div layout:fragment="content"
+	style="color: white; background-color: #212529;">
+	<div class="container">
+
+		<div class="ysk-wrap1">
+			<div class="ysk-text1">
+				<h3>에약</h3>
+				<hr class="my-lg-3">
+				<p class="title_text">모험의 시작! 당신의 두뇌를 테스트하세요!</p>
+			</div>
+			<div class="ysk-image1">
+				<img src="/images/main/qwer.jpeg" width="1600" height="280"
+					alt="이미지 없음">
+			</div>
+
+		</div>
+		<h3>예약</h3>
+
+		<hr class="my-lg-3">
+
+		<div class="rev_D set" style="text-align: center;">
+			<form id="reser" name="reser" method="post"
+				action="/user/reservation" enctype="multipart/form-data">
+
+				<div class="rev_Top set">
+					<div class="rev_select set">
+						<dl class="reserve_Dl set">
+							<dt class="set">
+								<label class="set" for="theme">날짜 선택 : </label>
+							</dt>
+							<dd class="set">
+								<link rel="stylesheet"
+									href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+								<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+								<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+								<script src="./jquery-ui-1.12.1/datepicker-ko.js"></script>
+								<input type="text" id="datepicker" name="dates"
+									placeholder="날짜넣기">
+								<script>
+									$.datepicker.setDefaults({
+										dateFormat : 'yy-mm-dd',
+										prevText : '이전 달',
+										nextText : '다음 달',
+										monthNames : [ '1월', '2월', '3월', '4월',
+												'5월', '6월', '7월', '8월', '9월',
+												'10월', '11월', '12월' ],
+										monthNamesShort : [ '1월', '2월', '3월',
+												'4월', '5월', '6월', '7월', '8월',
+												'9월', '10월', '11월', '12월' ],
+										dayNames : [ '일', '월', '화', '수', '목',
+												'금', '토' ],
+										dayNamesShort : [ '일', '월', '화', '수',
+												'목', '금', '토' ],
+										dayNamesMin : [ '일', '월', '화', '수',
+												'목', '금', '토' ],
+										showMonthAfterYear : true,
+										yearSuffix : '년'
+									});
+									$(function() {
+										$("#datepicker").datepicker();
+									});
+								</script>
+							</dd>
+						</dl>
+						<dl class="reserve_Dl set">
+							<dt class="set">
+								<label class="set" for="theme">테마선택 : </label>
+							</dt>
+							<dd class="set">
+								<select name="thema" id="thema" class="selectType set"
+									onchange="fun_rev_change()" title="테마를 선택하세요">
+									<option value="">테마를 선택하세요</option>
+									<option value="인형살인" th:selected="${themas == '인형살인'}">인형살인</option>
+									<option value="인육식당" th:selected="${themas == '인육식당'}">인육식당</option>
+									<option value="저주인형" th:selected="${themas == '저주인형'}">저주인형</option>
+									<option value="잔혹인어" th:selected="${themas == '잔혹인어'}">잔혹인어</option>
+									<option value="사진괴담" th:selected="${themas == '사진괴담'}">사진괴담</option>
+									<option value="감옥탈출" th:selected="${themas == '감옥탈출'}">감옥탈출</option>
+									<option value="해골성당" th:selected="${themas == '해골성당'}">해골성당</option>
+									<option value="생체실험731" th:selected="${themas == '생체실험731'}">생체실험731</option>
+								</select>
+							</dd>
+						</dl>
+						<dl class="reserve_Dl set">
+							<dt class="set">
+								<label class="set" for="theme">시간 선택 : </label>
+							</dt>
+							<dd class="set">
+								<select name="times" id="times" class="selectType set"
+									onchange="fun_rev_change()" title="시간을 선택하세요">
+									<option value="">시간을 선택하세요</option>
+									<option value="12시">12 : 00</option>
+									<option value="13시">13 : 00</option>
+									<option value="14시">14 : 00</option>
+									<option value="15시">15 : 00</option>
+									<option value="16시">16 : 00</option>
+									<option value="17시">17 : 00</option>
+								</select>
+							</dd>
+						</dl>
+						<dl class="reserve_Dl set">
+							<dt class="set">
+								<label class="set" for="theme">인원 선택 : </label>
+							</dt>
+							<dd class="set">
+								<select name="prices" id="prices" class="selectType set"
+									onchange="fun_rev_change()" title="인원을 선택하세요">
+									<option value="20000">2인</option>
+									<option value="30000">3인</option>
+									<option value="40000">4인</option>
+								</select>
+							</dd>
+							<label class="set" for="theme">(인당 : 10000원) </label>
+						</dl>
+					</div>
+					<!-- end : class : rev_select -->
+
+				</div>
+				<!-- end : class : rev_Top -->
+				<input type="submit" id="submit" value="저장" class="btn" />
+			</form>
+			<div>
+				<img src="/images/main/maxresdefault.jpg" width="500" height="200" />
+			</div>
+		</div>
+		<!-- end : class : list_top -->
+	</div>
+</div>
+</html>

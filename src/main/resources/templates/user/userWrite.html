@@ -11,67 +11,84 @@
 <th:block layout:fragment="script">
 </th:block>
 
-<div layout:fragment="content">
+<div layout:fragment="content"
+	style="color: white; background-color: #212529; text-align: center;">
 
-	<div class="container">
-		<h2>사용자 등록</h2>
+	<div class="container" style="vertical-align: middle;">
 
-		<form id="frm" name="frm" method="post" action="/user/userInsert"
-			enctype="multipart/form-data">
-			<table class="board_detail">
-				<tr>
-					<td>아이디</td>
-					<td>
-						<div class="form-floating mb-3">
-							<input type="text" class="form-control" id="id" name="id"
-								placeholder="name@example.com"> <label
-								for="floatingInput">ID</label>
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<td>패스워드</td>
-					<td><div class="form-floating mb-3">
-							<input type="text" class="form-control" id="pw" name="pw"
-								placeholder="name@example.com"> <label
-								for="floatingInput">Password </label>
-						</div></td>
-				</tr>
-				<tr>
-					<td>이름</td>
-					<td><div class="form-floating mb-3">
-							<input type="text" class="form-control" id="name" name="name"
-								placeholder="name@example.com"> <label
-								for="floatingInput">Name </label>
-						</div></td>
-				</tr>
-				<tr>
-					<td>이메일</td>
-					<td><div class="form-floating mb-3">
-							<input type="text" class="form-control" id="email" name="email"
-								placeholder="name@example.com"> <label
-								for="floatingInput">Email address</label>
-						</div></td>
-				</tr>
-				<tr>
-					<td>권한</td>
-					<td>
-						<div class="form-floating mb-3">
-							<select class="form-control" id="role" name="role">
-								<option value="ROLE_ADMIN">관리자</option>
-								<option value="ROLE_MEMBER">사용자</option>
-							</select>
-							<label
-								for="floatingInput">Role</label>
-						</div>
-					</td>
-				</tr>
-			</table>
-			<input type="file" name="files" multiple="multiple" required /> <input
-				type="submit" id="submit" value="저장" class="btn" />
-		</form>
+		<div class="container">
+
+			<div class="ysk-wrap1">
+				<div class="ysk-text1">
+					<h3>회원가입</h3>
+					<hr class="my-lg-3">
+					<p class="title_text">모험의 시작! 당신의 두뇌를 테스트하세요!</p>
+				</div>
+				<div class="ysk-image1">
+					<img src="/images/main/qwer.jpeg" width="1600" height="280"
+						alt="이미지 없음">
+				</div>
+
+			</div>
+
+			<h2>회원 가입</h2>
+
+			<hr class="my-lg-3">
+
+			<form id="frm" name="frm" method="post" action="/user/userInsert"
+				enctype="multipart/form-data" style="display: inline-block;">
+				<table class="board_detail">
+					<tr>
+						<td>아이디</td>
+						<td>
+							<div class="form-floating mb-3">
+								<input type="text" class="form-control" id="id" name="id"
+									placeholder="name@example.com"> <label
+									for="floatingInput" style="color: black;">ID</label>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>패스워드</td>
+						<td><div class="form-floating mb-3">
+								<input type="text" class="form-control" id="pw" name="pw"
+									placeholder="name@example.com"> <label
+									for="floatingInput" style="color: black;">Password </label>
+							</div></td>
+					</tr>
+					<tr>
+						<td>이름</td>
+						<td><div class="form-floating mb-3">
+								<input type="text" class="form-control" id="name" name="name"
+									placeholder="name@example.com"> <label
+									for="floatingInput" style="color: black;">Name </label>
+							</div></td>
+					</tr>
+					<tr>
+						<td>이메일</td>
+						<td><div class="form-floating mb-3">
+								<input type="text" class="form-control" id="email" name="email"
+									placeholder="name@example.com"> <label
+									for="floatingInput" style="color: black;">Email address</label>
+							</div></td>
+					</tr>
+					<tr>
+						<td>권한</td>
+						<td>
+							<div class="form-floating mb-3">
+								<select class="form-control" id="role" name="role">
+									<option value="ROLE_ADMIN">관리자</option>
+									<option value="ROLE_MEMBER">사용자</option>
+								</select> <label for="floatingInput" style="color: black;">Role</label>
+							</div>
+						</td>
+					</tr>
+				</table>
+				<input type="file" name="files" multiple="multiple" required /> <input
+					type="submit" id="submit" value="저장" class="btn" />
+			</form>
+		</div>
 	</div>
-
 </div>
 </html>
 

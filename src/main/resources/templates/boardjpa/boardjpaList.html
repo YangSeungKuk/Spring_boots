@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorator="layout/default">
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/default"
+	xmlns:sec="http:www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
 <!-- index.html 고유 CSS 추가 -->
 <th:block layout:fragment="css">
@@ -11,63 +12,85 @@
 <th:block layout:fragment="script">
 </th:block>
 
-<div layout:fragment="content">
+<div layout:fragment="content"
+	style="color: white; background-color: #212529;">
 
-<div class="container">
-		<h2>게시판 목록</h2>
-		<table class = "board_list">
-			<colgroup>
-				<col width="15%"/>
-				<col width="*%"/>
-				<col width="15%"/>
-				<col width="20%"/>
-			</colgroup>
-			<thead>
-				<tr>
-					<th scope="col">글번호</th>
-					<th scope="col">제목</th>	
-					<th scope="col">조회수</th>
-					<th scope="col">작성일</th>														
-				</tr>
-			</thead>
-			<tbody>
-				<tr th:if="${#lists.size(list)} > 0" th:each="vo : ${list}">
-					<td>
-						<a href="/boardjpa/boardjpaDetail/" th:attrappend="href=${vo.idx}" th:text='${vo.idx}'></a>
-					</td>
-					<td th:text='${vo.title}'></td>
-					<td th:text='${vo.hitCnt}'></td>
-					<td th:text='${vo.createDate}'></td>
-				</tr>
-				<tr th:unless="${#lists.size(list)} > 0">
-					<td colspan="4">조회된 결과가 없습니다.</td>
-				</tr>
-			</tbody>
-		</table>
-		<nav aria-label="Page navigation example">
-			<ul class="pagination justify-content-center">
-				<li class="page-item"
-					th:classappend="${1 == list.pageable.pageNumber + 1} ? 'disabled'">
-					<a class="page-link" href="#"
-					th:href="@{/boardjpa/boardjpaList(page=${list.pageable.pageNumber - 1},searchText=${param.searchText})}"
-					tabindex="-1" aria-disabled="true">Previous</a>
-				</li>
-				<li class="page-item"
-					th:classappend="${i == list.pageable.pageNumber + 1} ? 'disabled'"
-					th:each="i : ${#numbers.sequence(startpage, endpage)}"><a
-					class="page-link" href="#"
-					th:href="@{/boardjpa/boardjpaList(page=${i - 1}, searchText = ${param.searchText})}"
-					th:text="${i}">1</a></li>
-				<li class="page-item"
-					th:classappend="${list.totalPages == list.pageable.pageNumber + 1} ? 'disabled'">
-					<a class="page-link" href="#"
-					th:href="@{/boardjpa/boardjpaList(page=${list.pageable.pageNumber + 1}, searchText=${param.searchText})}">Next</a>
-				</li>
-			</ul>
-		</nav>
-		<a href = "/boardjpa/boardjpaInsert" class = "btn">글쓰기</a>
+
+
+	<div class="container">
+
+		<div class="ysk-wrap1">
+			<div class="ysk-text1">
+				<h3>공지 / 이벤트</h3>
+				<hr class="my-lg-3">
+				<p class="title_text">모험의 시작! 당신의 두뇌를 테스트하세요!</p>
+			</div>
+			<div class="ysk-image1">
+				<img src="/images/main/qwer.jpeg" width="1600" height="280"
+					alt="이미지 없음">
+			</div>
+
+		</div>
+		<div>
+			<h2 class="set">공지 / 이벤트</h2>
+			<form class="d-flex" style="float:right;">
+				<input class="form-control me-2 set" type="search" placeholder="Search"
+					id="searchText" name="searchText" aria-label="Search" width="100" height="100"
+					th:value="${param.searchText}">
+				<button class="btn btn-outline-success set" type="submit">Search</button>
+			</form>
+		</div>
+		<div class="notice_list">
+
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th scope="col" style="color: white;">글번호</th>
+						<th scope="col" style="color: white;">제목</th>
+						<th scope="col" style="color: white;">조회수</th>
+						<th scope="col" style="color: white;">작성일</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:if="${#lists.size(list)} > 0" th:each="vo : ${list}">
+						<td><a href="/boardjpa/boardjpaDetail/"
+							th:attrappend="href=${vo.idx}" th:text='${vo.idx}'></a></td>
+						<td style="color: white;" th:text='${vo.title}'></td>
+						<td style="color: white;" th:text='${vo.hitCnt}'></td>
+						<td style="color: white;" th:text='${vo.createDate}'></td>
+					</tr>
+					<tr th:unless="${#lists.size(list)} > 0">
+						<td colspan="4">조회된 결과가 없습니다.</td>
+					</tr>
+				</tbody>
+			</table>
+			<nav aria-label="Page navigation example">
+				<ul class="pagination justify-content-center">
+					<li class="page-item"
+						th:classappend="${1 == list.pageable.pageNumber + 1} ? 'disabled'">
+						<a class="page-link" href="#"
+						th:href="@{/boardjpa/boardjpaList(page=${list.pageable.pageNumber - 1},searchText=${param.searchText})}"
+						tabindex="-1" aria-disabled="true">Previous</a>
+					</li>
+					<li class="page-item"
+						th:classappend="${i == list.pageable.pageNumber + 1} ? 'disabled'"
+						th:each="i : ${#numbers.sequence(startpage, endpage)}"><a
+						class="page-link" href="#"
+						th:href="@{/boardjpa/boardjpaList(page=${i - 1}, searchText = ${param.searchText})}"
+						th:text="${i}">1</a></li>
+					<li class="page-item"
+						th:classappend="${list.totalPages == list.pageable.pageNumber + 1} ? 'disabled'">
+						<a class="page-link" href="#"
+						th:href="@{/boardjpa/boardjpaList(page=${list.pageable.pageNumber + 1}, searchText=${param.searchText})}">Next</a>
+					</li>
+				</ul>
+			</nav>
+			<a href="/boardjpa/boardjpaInsert" class="btn">글쓰기</a>
+
+
+		</div>
 	</div>
-</div>
+	<hr class="my-lg-3">
 </html>
 
 

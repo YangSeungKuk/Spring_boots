@@ -1,34 +1,85 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="UTF-8">
-<title>게시판 작성</title>
-<link rel="stylesheet" th:href="@{/css/style.css}"></link>
-</head>
-<body>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/default">
+
+<!-- index.html 고유 CSS 추가 -->
+<th:block layout:fragment="css">
+</th:block>
+
+<!-- index.html 고유 스크립트 추가 -->
+<th:block layout:fragment="script">
+</th:block>
+
+<div layout:fragment="content"
+	style="color: white; background-color: #212529;">
+
 	<div class="container">
+	
+		<div class="ysk-wrap1">
+			<div class="ysk-text1">
+				<h3>공지 / 이벤트</h3>
+				<hr class="my-lg-3">
+				<p class="title_text">모험의 시작! 당신의 두뇌를 테스트하세요!</p>
+			</div>
+			<div class="ysk-image1">
+				<img src="/images/main/qwer.jpeg" width="1600" height="280"
+					alt="이미지 없음">
+			</div>
+
+		</div>
+
+
 		<h2>게시판 등록</h2>
+
+		<hr class="my-lg-3">
 
 		<form id="frm" name="frm" method="post"
 			action="/boardjpa/boardjpaInsert">
-			<table class="board_detail">
-				<tr>
-					<td>제목</td>
-					<td><input type="text" id="title" name="title" /></td>
-				</tr>
-				<tr>
-					<td>id</td>
-					<td><input type="text" id="createId" name="createId" /></td>
-				</tr>
-				<tr>
-					<td colspan="2">내용</td>
-				</tr>
-				<tr>
-					<td colspan="2"><textarea id="contents" name = "contents"></textarea></td>
-				</tr>
-			</table>
-			<input type="submit" id="submit" value="저장" class="btn" />
+
+			<table width="200%" class="table02">
+                <caption><strong><span class="t_red">*</span> 표시는 필수입력 항목입니다.</strong></caption>
+                    <colgroup>
+                         <col width="20%">
+                        <col width="*">
+                    </colgroup>
+                    <tbody id="tbody">
+                       <tr>
+                            <th style="color: white; text-align: center;">제목<span class="t_red">*</span></th>
+                            <td><input type="text" id="title" name="title" /></td>
+                        </tr>
+                         <tr>
+                            <th style="color: white; text-align: center;">작성자*</th>
+                            <td id="board_writer"><input type="text" id="createId" name="createId" /></td>
+                        </tr>
+                        <tr>
+                            <th style="color: white; text-align: center;">내용<span class="t_red">*</span></th>
+                            <td colspan="3"><textarea id="contents" name="contents" cols="50" rows="5" class="textarea01"></textarea></td>
+                        </tr>
+                    </tbody>
+                </table>   
+			<div style="text-align: center">
+				<input type="submit" id="submit" value="저장" class="btn"  align="center	"> 
+				<input type="button" value="뒤로가기" onclick="history.back(-1)" class="btn btn-primary" />
+			</div>
 		</form>
 	</div>
-</body>
+
+
+</div>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,11 +1,14 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http:www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
 <header th:fragment="menuFragment">
 
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-auto py-3">
 		<div class="container-fluid">
-			<a class="navbar-brand" href="#">Navbar</a>
+			<a class="navbar-brand" href="/">
+				<img src="/images/main/logo.png">
+			</a>
 			<button class="navbar-toggler" type="button"
 				data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
 				aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -14,11 +17,17 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-					<li class="nav-item"><a class="nav-link active"
-						aria-current="page" href="/">Home</a></li>
-					<li class="nav-item"><a class="nav-link" href="/user/userList">사용자</a></li>
-					<li class="nav-item"><a class="nav-link" href="/boardjpa/boardjpaList">보드jpa</a></li>
-					<li class="nav-item dropdown"><a
+					<li class="nav-item"><a class="nav-link"
+						aria-current="page" href="/user/roomthema">룸테마</a></li>
+					<li class="nav-item"><a class="nav-link" href="/user/reservation">예약</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="/user/reserConfirm">예약확인</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="/user/map">위치</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="/boardjpa/boardjpaList">공지/이벤트</a></li>
+					<li class="nav-item"><a class="nav-link" href="/user/userList">사용자리스트</a></li>			
+					<!-- <li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 						role="button" data-bs-toggle="dropdown" aria-expanded="false">
 							Dropdown </a>
@@ -28,23 +37,36 @@
 							<li><hr class="dropdown-divider"></li>
 							<li><a class="dropdown-item" href="#">Something else
 									here</a></li>
-						</ul></li>
-					<li class="nav-item"><a class="nav-link disabled" href="#"
-						tabindex="-1" aria-disabled="true">Disabled</a></li>
+						</ul></li> -->
+					<!-- <li class="nav-item"><a class="nav-link disabled" href="#"
+						tabindex="-1" aria-disabled="true">Disabled</a></li> -->
 				</ul>
-				<form class="d-flex">
-					<input class="form-control me-2" type="search" placeholder="Search" id= "searchText"
-                 		   name= "searchText"
-                  		   aria-label="Search"
-                  		   th:value="${param.searchText}">
-					<button class="btn btn-outline-success" type="submit">Search</button>
-					<button class="btn btn-outline-primary" type="button"><a th:href="@{/login/login}" class="text-white">login</a></button>
-					<!-- &nbsp; -->
-					<button class="btn btn-outline-danger" type="button"><a th:href="@{/login/logout}" class="text-white">logout</a></button>
+				<form class="d-flex" >	
+					<!-- <input class="form-control me-2" type="search" placeholder="Search"
+						id="searchText" name="searchText" aria-label="Search"
+						th:value="${param.searchText}">
+					<button class="btn btn-outline-success" type="submit">Search</button> -->
+					
+					<!-- 로그인x -->
+					<div sec:authorize="isAnonymous()">
+						<button class="btn btn-outline-success"> <a href="/login/login" style="color:white;">Login</a></button>
+					<!-- 	<button class="btn btn-outline-success" th:href="@{/login/login}"><a href="/login/login">Login</a></button> -->
+						<!-- 						<a th:href="@{/login/login}" class="btn btn-outline-primary">Login</a>
+						<a th:href="@{/user/userInsert}" class="btn btn-outline-primary">Sign up</a> -->
+					</div>
+					<!-- 로그인o -->
+					<div sec:authorize="isAuthenticated()">
+						<p class="text-white set" color="white">어서오세요.</p> <span class="text-white set" sec:authentication="name"></span><p class="text-white set" color="white"> 님.</p>
+						<a th:href="@{/login/logout}" class="btn btn-outline-danger">Logout</a>
+					</div>
+					
+					<!-- <button class="btn btn-outline-primary" type="button"><a th:href="@{/login/login}" class="text-white">login</a></button>
+					&nbsp;
+					<button class="btn btn-outline-danger" type="button"><a th:href="@{/login/logout}" class="text-white">logout</a></button> -->
 				</form>
 			</div>
 		</div>
-	</nav> 
+	</nav>
 
 </header>
 

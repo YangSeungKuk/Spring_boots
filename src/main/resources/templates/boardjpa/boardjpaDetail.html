@@ -1,47 +1,90 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="UTF-8">
-<title>게시판 상세</title>
-<link rel="stylesheet" th:href="@{/css/style.css}"></link>
-</head>
-<body>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/default">
+
+<!-- index.html 고유 CSS 추가 -->
+<th:block layout:fragment="css">
+</th:block>
+
+<!-- index.html 고유 스크립트 추가 -->
+<th:block layout:fragment="script">
+</th:block>
+
+<div layout:fragment="content"
+	style="color: white; background-color: #212529;">
+
 	<div class="container">
+		<div class="ysk-wrap1">
+			<div class="ysk-text1">
+				<h3>공지 / 이벤트</h3>
+				<hr class="my-lg-3">
+				<p class="title_text">모험의 시작! 당신의 두뇌를 테스트하세요!</p>
+			</div>
+			<div class="ysk-image1">
+				<img src="/images/main/qwer.jpeg" width="1600" height="280"
+					alt="이미지 없음">
+			</div>
+
+		</div>
+
+
 		<h2>게시판 상세</h2>
 
-		<form id="frm" name="frm" method="post" enctype="multipart/form-data" th:action="'/boardjpa/boardjpaUpdate/' + ${boardjpa.idx} + '/'+ ${boardjpa.hitCnt}">
-			<table class="board_detail">
-				<tr>
-					<td>글 번호</td>
-					<td><input type="text" id="idx" name="idx" th:value="${boardjpa.idx}" disabled='disabled'/></td>
-				</tr>
-				<tr>
-					<td>제목</td>
-					<td><input type="text" id="title" name="title" th:value="${boardjpa.title}"/></td>
-				</tr>
-				<tr>
-					<td>조회수</td>
-					<td><input type="text" id="hitCnt" name="hitCnt" th:value="${boardjpa.hitCnt}" disabled='disabled'/></td>
-				</tr>
-				<tr>
-					<td>id</td>
-					<td><input type="text" id="createId" name="createId" th:value="${boardjpa.createId}" /></td>
-				</tr>
-				<tr>
-					<td>내용</td>
-					<td><input type="text" id="contents" name="contents" th:value="${boardjpa.contents}"  /></td>
-				</tr>
+		<hr class="my-lg-3">
+
+		<form id="frm" name="frm" method="post" enctype="multipart/form-data"
+			th:action="'/boardjpa/boardjpaUpdate/' + ${boardjpa.idx} + '/'+ ${boardjpa.hitCnt}">
+
+			<table class="board_view">
+				<colgroup>
+					<col width="15%" />
+					<col width="35%" />
+					<col width="15%" />
+					<col width="35%" />
+				</colgroup>
+				<tbody>
+					<tr>
+						<th scope="row" style="color: white; text-align: center;">글 번호</th>
+						<td align="center"><input type="text" id="idx" name="idx"
+						th:value="${boardjpa.idx}" readonly="readonly" />
+						</td>
+						<th scope="row" style="color: white; text-align: center;">조회수</th>
+						<td align="center"><input type="text" id="hitCnt" name="hitCnt"
+						th:value="${boardjpa.hitCnt}" readonly="readonly"/></td>
+					</tr>
+					<tr>
+						<th scope="row" style="color: white; text-align: center;">ID</th>
+						<td align="center"><input type="text" id="createId" name="createId"
+						th:value="${boardjpa.createId}" readonly="readonly" /></td>
+						<th scope="row" style="color: white; text-align: center;">제목</th>
+						<td colspan="3" align="center"><input type="text" id="title" name="title"
+						th:value="${boardjpa.title}" /></td>
+					</tr>
+					<tr>
+						<td colspan="4" class="view_text">
+						<textarea rows="10" cols="180" title="내용" id="contents" name="contents"  th:text="${boardjpa.contents}"></textarea>
+						
+						</td>
+					</tr>
+				</tbody>
 			</table>
-			<input type="submit" id="submit" value="수정" class="btn" />
-			<button>
-				<a th:href="'/boardjpa/boardjpaDelete/' + ${boardjpa.idx}">삭제</a>
-			</button>
-			<button>
-				<a href="/boardjpa/boardjpaList">리스트</a>
-			</button>
+
+			<a href="/images/main/qwer.jpeg" download>임시
+						할인 쿠폰</a>
+			<div>
+				<input type="submit" id="submit" value="수정" class="btn" />
+				<button>
+					<a th:href="'/boardjpa/boardjpaDelete/' + ${boardjpa.idx}">삭제</a>
+				</button>
+				<input type="button" value="목록" onclick="history.back(-1)"
+					class="btn btn-primary" />
+			</div>
 		</form>
-		
+
 	</div>
 
-</body>
+</div>
 </html>
+
+
